@@ -4,4 +4,4 @@
 A multi-purpose project management web application. 
 
 ## Team members
-Megan Kee, Richard Do, Shane Moe, Susan Ngo
+Richard Do (rdo), Megan Kee (mkee), Shane Moe (ssoemoe), Susan Ngo (sngo)
