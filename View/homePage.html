@@ -1,16 +1,16 @@
 <!doctype html>
 <html>
-	<head> 
+	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>Divide Application Home Page (Main)</title>
 		<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+		<!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>-->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-		<link rel="stylesheet" href="main.css">
-		<script src="main.js"></script>
+		<link rel="stylesheet" href="styleSheet.css">
+		<script src="script.js"></script>
 	</head>
-	
+
 	<body>
 		<div class="container">
 			<br />
@@ -23,17 +23,33 @@
 					<a class="nav-link active" data-toggle="tab" href="#storyBoard">Story Board</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" data-toggle="tab" href="#sprintBoard">Sprint Board; Stories</a>
+					<a class="nav-link" data-toggle="tab" href="#backlog">Backlog</a>
 				</li>
 			</ul>
 			<div class="tab-content">
 				<div class="tab-pane container active" id="storyBoard">
 					<br />
+					<h6>Progress</h6>
 					<div class="progress">
 						<div class="progress-bar"></div>
 					</div>
+					<hr />
+					<div class="row">
+						<div class="col-sm-3 border" align="center">
+							<h5>To-do</h5>
+						</div>
+						<div class="col-sm-3 border" align="center">
+							<h5>In Progress</h5>
+						</div>
+						<div class="col-sm-3 border" align="center">
+							<h5>In Code Review</h5>
+						</div>
+						<div class="col-sm-3 border" align="center">
+							<h5>QA</h5>
+						</div>
+					</div>
 				</div>
-				<div class="tab-pane container fade" id="sprintBoard">Test
+				<div class="tab-pane container fade" id="backlog">Test
 				</div>
 			</div>
 		</div>

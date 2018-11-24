@@ -1,1 +1,4 @@
 // Style sheet
+.border {
+  border: 1px solid gray;
+}
