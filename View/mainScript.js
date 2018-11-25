@@ -5,6 +5,7 @@ function main() {
 
 }
 
+// Drag and drop events
 function allowDrop(ev) {
     ev.preventDefault();
 }
