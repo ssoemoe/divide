@@ -11,6 +11,14 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
 
 //routers
+let sendLoginPage = (req, res) => res.sendFile(path.join(__dirname + "/View/login.html"));
 
-app.get('/', (req, res) => res.sendFile(path.join(__dirname + "/View/login.html")));
+app.get('/', sendLoginPage);
+app.get("/login", sendLoginPage);
+app.get("/homepage", (req, res) => res.sendFile(path.join(__dirname + "/View/homePage.html")));
+
+
+/*app.put();
+app.delete();
+app.post();*/
 app.listen(port, ()=>console.log(`The application is running on localhost: ${port}`));

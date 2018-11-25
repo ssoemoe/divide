@@ -4,20 +4,29 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>Divide Application Home Page (Main)</title>
 		<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-		<link rel="stylesheet" href="styleSheet.css">
+		<link href="styleSheet.css" rel="stylesheet">
 		<script src="mainScript.js"></script>
 	</head>
 
 	<body>
+		<nav class="navbar bg-primary navbar-dark fixed-top">
+			<a class="navbar-brand" href="#divide">Divide</a>
+			<div class="pull-right">
+				<button type="button" class="btn btn-primary btn-sm" id="userButton">
+					<i class="fa fa-user-circle"></i> User
+				</button>
+			</div>
+		</nav>
+		<br />
 		<div class="container">
-			<br />
-			<h1>Divide Application System</h1>
-			<br />
+			<br /><br />
 			<h3>Scrum Management Home Page</h3>
 			<br />
+
 			<ul class="nav nav-tabs" id="tabs">
 				<li class="nav-item">
 					<a class="nav-link active" data-toggle="tab" href="#storyBoard" id="homeTab">Story Board</a>
@@ -25,7 +34,13 @@
 				<li class="nav-item">
 					<a class="nav-link" data-toggle="tab" href="#backlog" id="backlogTab">Backlog</a>
 				</li>
+				<div class="pull-right">
+					<button type="button" class="btn btn-outline-primary">
+						<i class="fa fa-plus"></i> Create Project
+					</button>
+				</div>
 			</ul>
+
 			<div class="tab-content">
 				<div class="tab-pane container active" id="storyBoard">
 					<br />
@@ -34,24 +49,61 @@
 						<div class="progress-bar"></div>
 					</div>
 					<hr />
-					<div class="row">
+
+					<!-- Table implementation -->
+					<table class="table table-striped table-bordered table-hover">
+						<thead>
+							<tr align="center">
+								<th>To-do</th>
+								<th>In Progress</th>
+								<th>In Code Review</th>
+								<th>QA</th>
+							</tr>
+						</thead>
+						<tbody>
+							<!--<tr>
+								<td>
+									<div class="task">
+										<p>Test task title</p>
+									</div>
+								</td>
+							</tr>-->
+						</tbody>
+					</table>
+
+					<!-- Responsive columns implementation -->
+					<!--<div class="row">
 						<div class="col-sm-3 border" align="center">
-							<h5>To-do</h5>
+							<h5><strong>To-do</strong></h5>
 						</div>
 						<div class="col-sm-3 border" align="center">
-							<h5>In Progress</h5>
+							<h5><strong>In Progress</strong></h5>
 						</div>
 						<div class="col-sm-3 border" align="center">
-							<h5>In Code Review</h5>
+							<h5><strong>In Code Review</strong></h5>
 						</div>
 						<div class="col-sm-3 border" align="center">
-							<h5>QA</h5>
+							<h5><strong>QA</strong></h5>
 						</div>
-					</div>
+					</div>-->
 				</div>
+
 				<div class="tab-pane container fade" id="backlog">
 					<br />
-					<p>Test</p>
+					<table class="table table-striped table-bordered table-hover">
+						<thead>
+							<tr>
+								<th>Task Name</th>
+								<th>Duration</th>
+								<th>Start On</th>
+								<th>Due On</th>
+								<th>% Complete</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+					<p>Test task here</p>
 				</div>
 			</div>
 		</div>
