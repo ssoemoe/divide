@@ -14,3 +14,15 @@ h5 {
 .nav-item {
   display: inline;
 }
+
+.signUp {
+	padding-top: 4px;
+	font-size: 14px;
+	color: rgb(0, 123, 255);
+	text-align: center;
+}
+
+.signUp:hover {
+	text-decoration: underline;
+	cursor: pointer;
+}
