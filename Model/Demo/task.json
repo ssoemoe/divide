@@ -1,11 +1,13 @@
 // Dummy JSON data for task table
 {
   "task": {
-    "description": "",
-    "status": "",
-    "createdDate": "",
-    "dueDate": "",
-    "assignedMembers": "",
+    "id": 1,
+    "description": "Update SHA-256 to SHA-512",
+    "status": Incomplete,
+    "createdDate": "2018-11-01",
+    "dueDate": "2018-12-08",
+    "assignedMembers": "jmiller",
+    "assigner": "wjones",
     "relatedProject": "",
     "issues": ""
   }

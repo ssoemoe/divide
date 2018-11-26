@@ -1,8 +1,9 @@
 // Dummy JSON data for team table
 {
   "team": {
-    "teamName": "",
-    "description": "",
+    "id": 1,
+    "teamName": "Network Management",
+    "description": "This team will be responsible for installing and maintaining the computer networks and train staff to give technical support",
     "managerID": "",
     "memberID": ""
   }

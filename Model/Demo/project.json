@@ -1,10 +1,10 @@
 // Dummy JSON data for project table
 {
   "project": {
-    "members": "",
-    "thingsToDo": "",
-    "finishedTasks": "",
-    "totalTasks": "",
-    "status": ""
+    "id": 1,
+    "description": "Blackbox Web Scraper",
+    "manager": "wjones",
+    "members": "adavis",
+    "status": Incomplete
   }
 }
