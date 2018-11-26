@@ -4,8 +4,8 @@ const port = 4500;
 const app = express();
 const bodyParser = require("body-parser");
 const methodOverride = require("method-override");
+const utilities = require("./utilities");
 const db = require("./Model/dbtest");
-const mysql = require("./Model/model");
 
 app.use(express.json());
 app.use(bodyParser.json());
@@ -14,6 +14,8 @@ app.use(methodOverride('_method'));
 
 //functions
 let sendLoginPage = (req, res) => res.sendFile(path.join(__dirname + "/View/login.html"));
+
+const mysql = require("./Model/model");
 mysql.startConnection();
 let conn = mysql.getConnection();
 
@@ -21,6 +23,9 @@ let conn = mysql.getConnection();
 app.get('/', sendLoginPage);
 app.get("/login.html", sendLoginPage);
 app.get("/homepage.html", (req, res) => res.sendFile(path.join(__dirname + "/View/homePage.html")));
+
+//person
+// app.post("/api/person/add", (req, res) => {});
 
 //testing
 app.get("/dbtest", (req, res) => {db.getPerson(req, res, conn)});

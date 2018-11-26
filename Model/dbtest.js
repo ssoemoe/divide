@@ -2,7 +2,7 @@ const mysql = require("./model");
 
 module.exports = {
     getPerson: (req, res, connection) => {
-        connection.query("select * from team", (err, rows)=>{
+        connection.query("select image from person where username=?", "adavis", (err, rows)=>{
             if(!err) {
                 res.send(rows);
             }
