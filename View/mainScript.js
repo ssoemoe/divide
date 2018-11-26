@@ -2,7 +2,18 @@
 window.onload = main;
 
 function main() {
+  getTasks();
+}
 
+// Obtaining JSON data
+function getTasks() {
+  var json = JSON.parse(task);
+  var tasks = json.split(",");
+  for (var i = 0; i < tasks.length; i++) {
+    var tableRow = "<tr><td>" + tasks[i].description + "</td><td></td><td></td><td></td></tr>";
+    $("#tasks").innerHTML = tableRow;
+    //$(tableRow).appendTo("#sprintTable tbody");
+  }
 }
 
 // Drag and drop events

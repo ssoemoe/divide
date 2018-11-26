@@ -1,10 +1,12 @@
 // Dummy JSON data for issues table
 {
-  "issues": {
-    "id": 1,
-    "description": "Cannot update the dependency",
-    "status": "Complete",
-    "developerRequesting": "jmiller",
-    "developerRequested": "adavis"
-  }
+  "issues": [
+    {
+      "id": 1,
+      "description": "Cannot update the dependency",
+      "status": "Complete",
+      "developerRequesting": "jmiller",
+      "developerRequested": "adavis"
+    }
+  ]
 }
