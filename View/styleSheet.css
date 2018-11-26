@@ -27,6 +27,15 @@ h5 {
 	cursor: pointer;
 }
 
+.modal-content {
+	width: 600px;
+}
+
+.modal-body {
+	width: 600px;
+	font-size: 14px;
+}
+
 body {
     font-family: 'Noto Sans SC', sans-serif;
 }
