@@ -1,0 +1,12 @@
+// Dummy JSON data for task table
+{
+  "task": {
+    "description": "",
+    "status": "",
+    "createdDate": "",
+    "dueDate": "",
+    "assignedMembers": "",
+    "relatedProject": "",
+    "issues": ""
+  }
+}

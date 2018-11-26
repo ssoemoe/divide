@@ -1,0 +1,10 @@
+// Dummy JSON data for project table
+{
+  "project": {
+    "members": "",
+    "thingsToDo": "",
+    "finishedTasks": "",
+    "totalTasks": "",
+    "status": ""
+  }
+}

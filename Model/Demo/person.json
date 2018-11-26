@@ -1,11 +1,5 @@
-// JSON array of tables
+// Dummy JSON data for persons table
 {
-  "issues": {
-    "description": ,
-    "status": ,
-    "developerRequesting": ,
-    "developerRequested":
-  },
   "person": [
     {
       "firstName": "Ava",
@@ -35,33 +29,5 @@
       "currentTasks": "",
       "currentProjects": ""
     }
-  ],
-  "project": {
-    "members": "",
-    "thingsToDo": "",
-    "finishedTasks": "",
-    "totalTasks": "",
-    "status": ""
-  },
-  "sprint": {
-    "startDate": "",
-    "endDate": "",
-    "tasks": "",
-    "notes": "",
-  },
-  "task": {
-    "description": "",
-    "status": "",
-    "createdDate": "",
-    "dueDate": "",
-    "assignedMembers": "",
-    "relatedProject": "",
-    "issues": ""
-  },
-  "team": {
-    "teamName": "",
-    "description": "",
-    "managerID": "",
-    "memberID": ""
-  }
+  ]
 }

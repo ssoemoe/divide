@@ -1,0 +1,9 @@
+// Dummy JSON data for sprint table
+{
+  "sprint": {
+    "startDate": "",
+    "endDate": "",
+    "tasks": "",
+    "notes": "",
+  }
+}

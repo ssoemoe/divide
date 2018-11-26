@@ -1,0 +1,9 @@
+// Dummy JSON data for team table
+{
+  "team": {
+    "teamName": "",
+    "description": "",
+    "managerID": "",
+    "memberID": ""
+  }
+}

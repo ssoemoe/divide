@@ -1,0 +1,9 @@
+// Dummy JSON data for issues table
+{
+  "issues": {
+    "description": ,
+    "status": ,
+    "developerRequesting": ,
+    "developerRequested":
+  }
+}
