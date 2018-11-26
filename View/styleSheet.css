@@ -26,3 +26,7 @@ h5 {
 	text-decoration: underline;
 	cursor: pointer;
 }
+
+body {
+    font-family: 'Noto Sans SC', sans-serif;
+}

@@ -23,6 +23,7 @@ let conn = mysql.getConnection();
 app.get('/', sendLoginPage);
 app.get("/login.html", sendLoginPage);
 app.get("/homepage.html", (req, res) => res.sendFile(path.join(__dirname + "/View/homePage.html")));
+app.get("/welcome.html", (req, res) => res.sendFile(path.join(__dirname + "/View/welcome.html")));
 
 //person
 // app.post("/api/person/add", (req, res) => {});
