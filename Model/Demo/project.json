@@ -5,6 +5,6 @@
     "description": "Blackbox Web Scraper",
     "manager": "wjones",
     "members": "adavis",
-    "status": Incomplete
+    "status": "Incomplete"
   }
 }

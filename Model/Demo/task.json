@@ -3,10 +3,10 @@
   "task": {
     "id": 1,
     "description": "Update SHA-256 to SHA-512",
-    "status": Incomplete,
+    "status": "Incomplete",
     "createdDate": "2018-11-01",
     "dueDate": "2018-12-08",
-    "assignedMembers": "jmiller",
+    "assignedMembers": "adavis",
     "assigner": "wjones",
     "relatedProject": "",
     "issues": ""

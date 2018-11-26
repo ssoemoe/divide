@@ -28,6 +28,20 @@
       "joinedDate": "2017-04-24",
       "currentTasks": "",
       "currentProjects": ""
+    },
+    {
+      "firstName": "William",
+      "lastName": "Jones",
+      "username": "wjones",
+      "email": "williamjones@divide.com",
+      "image": "",
+      "password": "applepie",
+      "officePhoneNumber": "123-456-2109",
+      "position": "Project Manager",
+      "team": "Software Development",
+      "joinedDate": "2015-11-16",
+      "currentTasks": "",
+      "currentProjects": ""
     }
   ]
 }
