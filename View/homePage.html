@@ -39,11 +39,9 @@
 				<li class="nav-item">
 					<a class="nav-link" data-toggle="tab" href="#backlog" id="backlogTab">Backlog</a>
 				</li>
-				<div class="pull-right">
-					<button type="button" class="btn btn-outline-primary">
-						<i class="fa fa-plus"></i> Create Project
-					</button>
-				</div>
+				<li class="nav-item">
+					<a class="nav-link" data-toggle="tab" href="#project" id="projectTab">Project</a>
+				</li>
 			</ul>
 
 			<div class="tab-content">
@@ -56,12 +54,12 @@
 					<hr />
 
 					<div class="pull-right">
-						<button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#myModal">
+						<button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#createTask">
 							<i class="fa fa-plus"></i> Create Task
 						</button>
 					</div>
 
-					<div id="myModal" class="modal fade" role="dialog">
+					<div id="createTask" class="modal fade" role="dialog">
 					  <div class="modal-dialog">
 
 					    <!-- Modal content-->
@@ -71,14 +69,14 @@
 					        <button type="button" class="close" data-dismiss="modal">&times;</button>
 					      </div>
 					      <div class="modal-body">
-							<strong>Description</strong><br>
-							<textarea rows="4" cols="82" class="form-control"></textarea><br>
+							<strong>Description</strong><br />
+							<textarea rows="4" cols="82" class="form-control"></textarea><br />
 							<strong>Due Date</strong>
-							<input type="text" name="due-date" class="form-control" required />
+							<input type="text" name="due-date" class="form-control" required /><br />
 							<strong>Assigned Member(s)</strong>
-							<input type="text" name="assignees" class="form-control" required />
+							<input type="text" name="assignees" class="form-control" required /><br />
 							<strong>Related Project</strong>
-							<input type="text" name="related-project" class="form-control" required />
+							<input type="text" name="related-project" class="form-control" required /><br />
 
 					      </div>
 					      <div class="modal-footer">
@@ -89,17 +87,18 @@
 
 					  </div>
 					</div>
-					<br>
-					<br>
+					<br />
+					<br />
 
 					<!-- Table implementation -->
 					<table class="table table-striped table-bordered table-hover" id="sprintTable">
 						<thead>
 							<tr align="center">
-								<th>To-do</th>
-								<th>In Progress</th>
-								<th>In Code Review</th>
-								<th>QA</th>
+								<th>Task</th>
+								<th>Description</th>
+								<th>Status</th>
+								<th>Members</th>
+								<th>Related Projects</th>
 							</tr>
 						</thead>
 						<tbody id="tasks">
@@ -136,7 +135,6 @@
 						<thead>
 							<tr>
 								<th>Task Name</th>
-								<th>Duration</th>
 								<th>Start On</th>
 								<th>Due On</th>
 								<th>% Complete</th>
@@ -146,6 +144,53 @@
 						</tbody>
 					</table>
 					<p>Test task here</p>
+				</div>
+				<div class="tab-pane container fade" id="project">
+					<br />
+					<div class="pull-right">
+						<button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#createProject">
+							<i class="fa fa-plus"></i> Create Project
+						</button>
+					</div>
+
+					<div id="createProject" class="modal fade" role="dialog">
+					  <div class="modal-dialog">
+
+					    <!-- Modal content-->
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h4 class="modal-title">Create Project</h4>
+					        <button type="button" class="close" data-dismiss="modal">&times;</button>
+					      </div>
+					      <div class="modal-body">
+							<strong>Description</strong><br />
+							<textarea rows="4" cols="82" class="form-control"></textarea><br />
+							<strong>Assigned Member(s)</strong>
+							<input type="text" name="assignees" class="form-control" required /><br />
+
+					      </div>
+					      <div class="modal-footer">
+					      	<input type="submit" name="submit" class="btn btn-outline-primary" value="Create" />
+					        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					      </div>
+					    </div>
+
+					  </div>
+					</div>
+					<br />
+					<br />
+
+					<table class="table table-striped table-bordered table-hover">
+						<thead>
+							<tr>
+								<th>Description</th>
+								<th>Manager</th>
+								<th>Members</th>
+								<th>Status</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
 				</div>
 			</div>
 		</div>
