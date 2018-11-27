@@ -6,11 +6,18 @@ const bodyParser = require("body-parser");
 const methodOverride = require("method-override");
 const utilities = require("./utilities");
 const db = require("./Model/dbtest");
+const cors = require('cors')
 
+app.use(cors())
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
+app.all('/', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    next();
+   });
 
 //functions
 let sendLoginPage = (req, res) => res.sendFile(path.join(__dirname + "/View/login.html"));
