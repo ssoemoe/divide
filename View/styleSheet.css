@@ -11,10 +11,6 @@ h5 {
   padding-right: 3px;
 }
 
-.nav-item {
-  display: inline;
-}
-
 .signUp {
 	padding-top: 4px;
 	font-size: 14px;
@@ -34,6 +30,11 @@ h5 {
 .modal-body {
 	width: 600px;
 	font-size: 14px;
+}
+
+.form-control {
+	display: unset;
+	width: unset;
 }
 
 body {

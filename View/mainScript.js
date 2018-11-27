@@ -2,11 +2,21 @@
 window.onload = main;
 
 function main() {
-    getTasks();
+  document.getElementById("storyBoardUpdate").onclick = taskUpdate;
+  document.getElementById("backlogUpdate").onclick = taskUpdate;
+  document.getElementById("projectUpdate").onclick = projectUpdate;
+}
+
+function taskUpdate() {
+  alert("Tasks have been updated!");
+}
+
+function projectUpdate() {
+  alert("Projects have been updated!");
 }
 
 // Obtaining JSON data
-function getTasks() {
+/*function getTasks() {
     var json = JSON.parse(task);
     var tasks = json.split(",");
     for (var i = 0; i < tasks.length; i++) {
@@ -14,7 +24,7 @@ function getTasks() {
         $("#tasks").innerHTML = tableRow;
         //$(tableRow).appendTo("#sprintTable tbody");
     }
-}
+}*/
 
 // Drag and drop events
 function allowDrop(ev) {
@@ -30,4 +40,3 @@ function drop(ev) {
     var data = ev.dataTransfer.getData("text");
     ev.target.appendChild(document.getElementById(data));
 }
-
