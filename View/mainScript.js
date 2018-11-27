@@ -2,9 +2,6 @@
 window.onload = main;
 
 function main() {
-    let username = localStorage.getItem("username");
-    alert(username);
-    document.getElementById("userButton").innerHTML = username;
     getTasks();
 }
 
@@ -33,6 +30,4 @@ function drop(ev) {
     var data = ev.dataTransfer.getData("text");
     ev.target.appendChild(document.getElementById(data));
 }
-
-//REST apis
 
