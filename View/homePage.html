@@ -71,10 +71,12 @@
 					        <button type="button" class="close" data-dismiss="modal">&times;</button>
 					      </div>
 					      <div class="modal-body">
-									<strong>Description</strong><br />
-									<textarea rows="3" cols="80" class="form-control" id="taskDescription"></textarea><br />
+									<strong>Description</strong>
+									<textarea rows="3" cols="80" class="form-control" id="taskDescription"></textarea>
+									<br /><br />
 									<strong>Due Date</strong>
-									<input type="date" name="due-date" class="form-control" id="taskDue" required /><br />
+									<input type="date" name="due-date" class="form-control" id="taskDue" required />
+									<br /><br />
 									<strong>Assigned Member(s)</strong>
 									<!--<input type="text" name="assignees" class="form-control" id="taskMembers" required /><br />-->
 									<select name="members[]" multiple="multiple" style="width: 100%">
@@ -83,6 +85,7 @@
 										<option value='a'>John</option>
 										<option value='a'>William</option>
 									</select>
+									<br /><br />
 									<strong>Related Project</strong>
 									<input type="text" name="related-project" class="form-control" id="taskRelatedProjects" required /><br />
 					      </div>
@@ -255,8 +258,9 @@
 					        <button type="button" class="close" data-dismiss="modal">&times;</button>
 					      </div>
 					      <div class="modal-body">
-									<strong>Description</strong><br />
-									<textarea rows="3" cols="80" class="form-control"></textarea><br />
+									<strong>Description</strong>
+									<textarea rows="3" cols="80" class="form-control"></textarea>
+									<br /><br />
 									<strong>Assigned Member(s)</strong>
 									<select name="members[]" multiple="multiple" style="width: 100%">
 										<option value='a'>Ava</option>
@@ -266,7 +270,7 @@
 									</select>
 					      </div>
 					      <div class="modal-footer">
-					      	<input type="submit" name="submit" class="btn btn-outline-primary" value="Create" />
+					      	<input type="submit" name="submit" class="btn btn-outline-primary" value="Create" id="createProject" />
 					        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					      </div>
 					    </div>

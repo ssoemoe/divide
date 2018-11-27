@@ -5,6 +5,8 @@ function main() {
   document.getElementById("storyBoardUpdate").onclick = taskUpdate;
   document.getElementById("backlogUpdate").onclick = taskUpdate;
   document.getElementById("projectUpdate").onclick = projectUpdate;
+  document.getElementById("createTask").onclick = createTask;
+  document.getElementById("createProject").onclick = createProject;
 }
 
 function taskUpdate() {
@@ -13,6 +15,14 @@ function taskUpdate() {
 
 function projectUpdate() {
   alert("Projects have been updated!");
+}
+
+function createTask() {
+  window.location.href = "homePage.html";
+}
+
+function createProject() {
+  window.location.href = "homePage.html";
 }
 
 // Obtaining JSON data
