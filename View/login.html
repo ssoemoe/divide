@@ -24,7 +24,7 @@
             <br />
             <br />
             <div class="col-md-5 mx-auto">
-                <form action="http://localhost:4500/homePage.html" method="get" onsubmit="return validate()">
+                <form action="http://localhost:4500/homePage.html" method="post" onsubmit="return validate()">
                     <input type="text" name="user" id="user" class="form-control" placeholder="Username" required />
                     <br />
                     <input type="password" name="pwd" id="pwd" class="form-control" placeholder="Password" required />
@@ -51,7 +51,7 @@
                 let pwd = document.getElementById("pwd").value;
                 let record = users.find(u => (u.username === username && u.password === pwd));
                 if(record) {
-                    document.cookie = `username=${username};path/`;
+                    localStorage.setItem("username", username);
                     return true;
                 }
                 else {

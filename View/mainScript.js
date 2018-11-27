@@ -2,18 +2,21 @@
 window.onload = main;
 
 function main() {
-  getTasks();
+    let username = localStorage.getItem("username");
+    alert(username);
+    document.getElementById("userButton").innerHTML = username;
+    getTasks();
 }
 
 // Obtaining JSON data
 function getTasks() {
-  var json = JSON.parse(task);
-  var tasks = json.split(",");
-  for (var i = 0; i < tasks.length; i++) {
-    var tableRow = "<tr><td>" + tasks[i].description + "</td><td></td><td></td><td></td></tr>";
-    $("#tasks").innerHTML = tableRow;
-    //$(tableRow).appendTo("#sprintTable tbody");
-  }
+    var json = JSON.parse(task);
+    var tasks = json.split(",");
+    for (var i = 0; i < tasks.length; i++) {
+        var tableRow = "<tr><td>" + tasks[i].description + "</td><td></td><td></td><td></td></tr>";
+        $("#tasks").innerHTML = tableRow;
+        //$(tableRow).appendTo("#sprintTable tbody");
+    }
 }
 
 // Drag and drop events
@@ -30,3 +33,6 @@ function drop(ev) {
     var data = ev.dataTransfer.getData("text");
     ev.target.appendChild(document.getElementById(data));
 }
+
+//REST apis
+

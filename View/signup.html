@@ -54,13 +54,13 @@
                             users = data;
                         });
                     });
-                    
+
                     function validate() {
                         let email = document.getElementById("emailAdd").value;
                         let username = document.getElementById("user").value;
                         let record = users.find(u => (u.email === email && u.username === username));
                         if(!record) {
-                            document.cookie = `username=${username};path/`;
+                            localStorage.setItem("username", username);
                             return true;
                         }
                         else {
