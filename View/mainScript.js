@@ -19,18 +19,33 @@ function projectUpdate() {
 }
 
 function createTask() {
-  window.location.href = "homePage.html";
+  $("#taskModal").modal("hide");
 }
 
 function createProject() {
   $("#projectModal").modal("hide");
-  /*$("#tabs a").closest("li").find("active").removeClass("active");
-  $("#storyBoard").find("active").removeClass("active");
-  $("#tabs a").closest("li").find("active").addClass("active");
-  $("#project").find("active").addClass("active");*/
 }
 
-/*function switchTabs() {
+function addTaskRow() {
+  var description = document.getElementById("taskDescription").value;
+}
+
+function addTaskTable() {
+
+}
+
+// Obtaining JSON data
+/*function getTasks() {
+    var json = JSON.parse(task);
+    var tasks = json.split(",");
+    for (var i = 0; i < tasks.length; i++) {
+        var tableRow = "<tr><td>" + tasks[i].description + "</td><td></td><td></td><td></td></tr>";
+        $("#tasks").innerHTML = tableRow;
+        //$(tableRow).appendTo("#sprintTable tbody");
+    }
+}*/
+
+function switchTabs() {
   console.log("switch");
   var homeTab = document.getElementById("homeTab");
   var storyBoard = document.getElementById("storyBoard");
@@ -43,18 +58,7 @@ function createProject() {
   projectTab.classList.add("show");
   project.classList.add("active");
   project.classList.add("show");
-}*/
-
-// Obtaining JSON data
-/*function getTasks() {
-    var json = JSON.parse(task);
-    var tasks = json.split(",");
-    for (var i = 0; i < tasks.length; i++) {
-        var tableRow = "<tr><td>" + tasks[i].description + "</td><td></td><td></td><td></td></tr>";
-        $("#tasks").innerHTML = tableRow;
-        //$(tableRow).appendTo("#sprintTable tbody");
-    }
-}*/
+}
 
 // Drag and drop events
 function allowDrop(ev) {

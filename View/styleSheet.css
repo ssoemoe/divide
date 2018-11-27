@@ -34,7 +34,14 @@ h5 {
 
 .form-control {
 	display: unset;
-	width: unset;
+}
+
+.stat {
+  width: unset;
+}
+
+.num {
+  width: 75px;
 }
 
 body {

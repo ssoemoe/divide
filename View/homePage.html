@@ -72,14 +72,14 @@
 					      </div>
 					      <div class="modal-body">
 									<strong>Description</strong>
-									<textarea rows="3" cols="80" class="form-control" id="taskDescription"></textarea>
+									<textarea rows="3" class="form-control" id="taskDescription"></textarea>
 									<br /><br />
 									<strong>Due Date</strong>
 									<input type="date" name="due-date" class="form-control" id="taskDue" required />
 									<br /><br />
 									<strong>Assigned Member(s)</strong>
 									<!--<input type="text" name="assignees" class="form-control" id="taskMembers" required /><br />-->
-									<select name="members[]" multiple="multiple" style="width: 100%">
+									<select name="members[]" class="form-control" multiple="multiple" id="taskMembers">
 										<option value='a'>Ava</option>
 										<option value='a'>Benjamin</option>
 										<option value='a'>John</option>
@@ -90,7 +90,7 @@
 									<input type="text" name="related-project" class="form-control" id="taskRelatedProjects" required /><br />
 					      </div>
 					      <div class="modal-footer">
-					      	<input type="submit" name="submit" class="btn btn-outline-primary" value="Create" id="createTask" />
+					      	<button type="button" class="btn btn-outline-primary" id="createTask" />Create</button>
 					        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					      </div>
 					    </div>
@@ -115,7 +115,7 @@
 								<td>Update header</td>
 								<td>6</td>
 								<td>
-									<select name="studyType" id="studyType" class="form-control">
+									<select name="status" class="form-control stat" id="status">
 										<option value="In Progress" selected="selected">In Progress</option>
 										<option value="Complete">Complete</option>
 									</select>
@@ -127,7 +127,7 @@
 								<td>Change bar color</td>
 								<td>7</td>
 								<td>
-									<select name="studyType" id="studyType" class="form-control">
+									<select name="status" class="form-control stat" id="status">
 										<option value="In Progress" selected="selected">In Progress</option>
 										<option value="Complete">Complete</option>
 									</select>
@@ -139,7 +139,7 @@
 								<td>Edit help page</td>
 								<td>8</td>
 								<td>
-									<select name="studyType" id="studyType" class="form-control">
+									<select name="status" class="form-control stat" id="status">
 										<option value="In Progress">In Progress</option>
 										<option value="Complete" selected="selected">Complete</option>
 									</select>
@@ -189,7 +189,7 @@
 								<td>6/12/2018</td>
 								<td>6/19/2018</td>
 								<td>
-									<input type="number" class="form-control" min="0" max="100" value=50 /> %
+									<input type="number" class="form-control num" min="0" max="100" value=50 /> %
 								</td>
 							</tr>
 							<tr align="center">
@@ -197,7 +197,7 @@
 								<td>6/12/2018</td>
 								<td>6/19/2018</td>
 								<td>
-									<input type="number" class="form-control" min="0" max="100" value=35 /> %
+									<input type="number" class="form-control num" min="0" max="100" value=35 /> %
 								</td>
 							</tr>
 							<tr align="center">
@@ -205,7 +205,7 @@
 								<td>6/12/2018</td>
 								<td>6/19/2018</td>
 								<td>
-									<input type="number" class="form-control" min="0" max="100" value=100 /> %
+									<input type="number" class="form-control num" min="0" max="100" value=100 /> %
 								</td>
 							</tr>
 							<tr align="center">
@@ -213,7 +213,7 @@
 								<td>N/A</td>
 								<td>N/A</td>
 								<td>
-									<input type="number" class="form-control" min="0" max="100" value=0 /> %
+									<input type="number" class="form-control num" min="0" max="100" value=0 /> %
 								</td>
 							</tr>
 							<tr align="center">
@@ -221,7 +221,7 @@
 								<td>N/A</td>
 								<td>N/A</td>
 								<td>
-									<input type="number" class="form-control" min="0" max="100" value=0 /> %
+									<input type="number" class="form-control num" min="0" max="100" value=0 /> %
 								</td>
 							</tr>
 							<tr align="center">
@@ -229,7 +229,7 @@
 								<td>N/A</td>
 								<td>N/A</td>
 								<td>
-									<input type="number" class="form-control" min="0" max="100" value=0 /> %
+									<input type="number" class="form-control num" min="0" max="100" value=0 /> %
 								</td>
 							</tr>
 						</tbody>
@@ -259,10 +259,10 @@
 					      </div>
 					      <div class="modal-body">
 									<strong>Description</strong>
-									<textarea rows="3" cols="80" class="form-control"></textarea>
+									<textarea rows="3" class="form-control" id="projectDescription"></textarea>
 									<br /><br />
 									<strong>Assigned Member(s)</strong>
-									<select name="members[]" multiple="multiple" style="width: 100%">
+									<select name="members[]" class="form-control" multiple="multiple" id="projectMembers">
 										<option value='a'>Ava</option>
 										<option value='a'>Benjamin</option>
 										<option value='a'>John</option>
@@ -270,7 +270,7 @@
 									</select>
 					      </div>
 					      <div class="modal-footer">
-					      	<button type="button" name="submit" class="btn btn-outline-primary" value="Create" id="createProject" />Create
+					      	<button type="button" class="btn btn-outline-primary" id="createProject" />Create</button>
 					        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					      </div>
 					    </div>
@@ -294,7 +294,7 @@
 								<td>William</td>
 								<td>Ava, John</td>
 								<td>
-									<select name="studyType" id="studyType" class="form-control">
+									<select name="status" class="form-control stat" id="status">
 										<option value="In Progress" selected="selected">In Progress</option>
 										<option value="Complete">Complete</option>
 									</select>
@@ -305,7 +305,7 @@
 								<td>Benjamin</td>
 								<td>Paul</td>
 								<td>
-									<select name="studyType" id="studyType" class="form-control">
+									<select name="status" class="form-control stat" id="status">
 										<option value="In Progress" selected="selected">In Progress</option>
 										<option value="Complete">Complete</option>
 									</select>
