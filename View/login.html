@@ -4,32 +4,61 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>Divide Application Login Page</title>
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="styleSheet.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+        <link href="styleSheet.css" rel="stylesheet">
         <script src="loginScript.js"></script>
     </head>
 
     <body>
-    	<nav class="navbar bg-primary navbar-dark fixed-top">
-			<a class="navbar-brand" href="#divide">Divide</a>
-		</nav>
-		<br><br>
+        <nav class="navbar bg-primary navbar-dark fixed-top">
+            <a class="navbar-brand" href="#divide">Divide</a>
+        </nav>
+        <br><br>
         <div class="container text-center">
             <br />
             <h1>Divide Application Login System</h1>
             <br />
             <br />
             <div class="col-md-5 mx-auto">
-                <input type="text" name="user" id="user" class="form-control" placeholder="Username" required />
-                <br />
-                <input type="password" name="pwd" id="pwd" class="form-control" placeholder="Password" required />
-                <br />
-                <input type="button" name="login" class="btn btn-outline-primary btn-block" value="Login" />
-                <div class="signUp">
-                    <a href="signup.html">Create an account</a>
-                </div>
-                <p id="message"></p>
+                <form action="http://localhost:4500/homePage.html" method="post" onsubmit="return validate()">
+                    <input type="text" name="user" id="user" class="form-control" placeholder="Username" required />
+                    <br />
+                    <input type="password" name="pwd" id="pwd" class="form-control" placeholder="Password" required />
+                    <br />
+                    <input type="submit" name="login" class="btn btn-outline-primary btn-block" value="Login" />
+                    <div class="signUp">
+                        <a href="http://localhost:4500/signup.html">Create an account</a>
+                    </div>
+                    <p id="message" style="color: red"></p>
+                </form>
             </div>
         </div>
+
+        <script>
+            let users = null;
+            $(function() {
+                $.getJSON("http://localhost:4500/api/person/users", function(data) {
+                    users = data;
+                });
+            });
+
+            function validate() {
+                let username = document.getElementById("user").value;
+                let pwd = document.getElementById("pwd").value;
+                let record = users.find(u => (u.username === username && u.password === pwd));
+                if(record) {
+                    localStorage.setItem("username", username);
+                    return true;
+                }
+                else {
+                    document.getElementById("message").innerHTML = "Incorrect username or password";
+                    return false;
+                }
+            }
+        </script>
     </body>
 </html>
