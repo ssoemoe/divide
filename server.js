@@ -5,6 +5,7 @@ const app = express();
 const bodyParser = require("body-parser");
 const methodOverride = require("method-override");
 const utilities = require("./utilities");
+const person = require("./Model/person");
 const db = require("./Model/dbtest");
 const cors = require('cors')
 
@@ -29,11 +30,18 @@ let conn = mysql.getConnection();
 //routers
 app.get('/', sendLoginPage);
 app.get("/login.html", sendLoginPage);
+app.get("/signup.html", (req, res)=>res.sendFile(path.join(__dirname + "/View/signup.html")))
 app.get("/homepage.html", (req, res) => res.sendFile(path.join(__dirname + "/View/homePage.html")));
 app.get("/welcome.html", (req, res) => res.sendFile(path.join(__dirname + "/View/welcome.html")));
 
 //person
-// app.post("/api/person/add", (req, res) => {});
+app.get("/api/person/users", (req, res) => {person.getAllUsers(req, res, conn);});
+app.post("/api/person/add", (req, res) => {
+    let form = req.body;
+    person.addPerson(req, res, conn, form.firstName, form.lastName, form.user, form.emailAdd, form.avatar, form.pwd,
+        form.phone, form.pos, form.team);
+    res.status(201).sendFile(path.join(__dirname + "/View/homePage.html"));
+});
 
 //testing
 app.get("/dbtest", (req, res) => {db.getPerson(req, res, conn)});

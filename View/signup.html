@@ -20,23 +20,30 @@
             <h3>Sign up for Divide Platform!</h3>
             <div class="col-md-5 mx-auto">                
                 <br />
-                <input type="text" name="firstName" id="firstName" class="form-control" placeholder="First Name" required />
-                <br />
-                <input type="text" name="lastName" id="lastName" class="form-control" placeholder="Last Name" required />
-                <br />
-                <input type="email" name="emailAdd" id="emailAdd" class="form-control" placeholder="Email Address" required />
-                <br />
-                <input type="text" name="user" id="user" class="form-control" placeholder="Username" required />
-                <br />
-                <input type="password" name="pwd" id="pwd" class="form-control" placeholder="Password" required />
-                <br />
-                <input type="text" name="pos" id="pos" class="form-control" placeholder="Position" required />
-                <br />
-                <input type="text" name="team" id="team" class="form-control" placeholder="Team name" required />
-                <br />
-                <input type="button" name="signup" class="btn btn-outline-primary btn-block" value="Sign Up" />
+                <form action="http://localhost:4500/api/person/add" method="post">
+                    <input type="text" name="firstName" id="firstName" class="form-control" placeholder="First Name" required />
+                    <br />
+                    <input type="text" name="lastName" id="lastName" class="form-control" placeholder="Last Name" required />
+                    <br />
+                    <input type="email" name="emailAdd" id="emailAdd" class="form-control" placeholder="Email Address" required />
+                    <br>
+                    <input type="tel" id="phone" name="phone"
+                           pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                           class="form-control" placeholder="Phone Number"
+                           required>
+                    <br />
+                    <input type="text" name="user" id="user" class="form-control" placeholder="Username" required />
+                    <br />
+                    <input type="password" name="pwd" id="pwd" class="form-control" placeholder="Password" required />
+                    <br />
+                    <input type="text" name="pos" id="pos" class="form-control" placeholder="Position" required />
+                    <br />
+                    <input type="text" name="team" id="team" class="form-control" placeholder="Team name" required />
+                    <br />
+                    <input type="submit" name="signup" class="btn btn-outline-primary btn-block" value="Sign Up" />
 
-                <p id="message"></p>
+                    <p id="message"></p>
+                </form>
             </div>
         </div>
     </body>
