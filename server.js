@@ -22,6 +22,7 @@ app.all('/', function(req, res, next) {
    });
 
 //functions
+let sendLoginPage = (req, res) => res.sendFile(path.join(__dirname + "/View/login.html"));
 
 const mysql = require("./Model/model");
 mysql.startConnection();
@@ -29,11 +30,16 @@ let conn = mysql.getConnection();
 
 //routers
 app.get("/styleSheet.css", (req, res) => res.sendFile(path.join(__dirname + "/View/styleSheet.css")));
+<<<<<<< HEAD
 app.get("/Images/divide.png", (req, res) => res.sendFile(path.join(__dirname + "/View/Images/divide.png")));
 app.get("/Images/avatarImages/:file", (req, res) => res.sendFile(path.join(__dirname + "/View/Images/avatarImages" + req.params.file)));
 app.get('/', (req, res) => res.sendFile(path.join(__dirname + "/View/welcome.html")));
 app.get("/login.html", (req, res) => res.sendFile(path.join(__dirname + "/View/login.html")));
 app.get("/userProfile.html", (req, res) => res.sendFile(path.join(__dirname + "/View/userProfile.html")));
+=======
+app.get('/', sendLoginPage);
+app.get("/login.html", sendLoginPage);
+>>>>>>> parent of dd10503... Update homepage
 app.get("/signup.html", (req, res)=>res.sendFile(path.join(__dirname + "/View/signup.html")));
 app.get("/homepage.html", (req, res) => res.sendFile(path.join(__dirname + "/View/homePage.html")));
 app.post("/homepage.html", (req, res) => res.sendFile(path.join(__dirname + "/View/homePage.html")));
