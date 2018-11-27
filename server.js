@@ -9,7 +9,7 @@ const person = require("./Model/person");
 const db = require("./Model/dbtest");
 const cors = require('cors')
 
-app.use(cors())
+app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -33,6 +33,7 @@ app.get('/', (req, res) => res.sendFile(path.join(__dirname + "/View/welcome.htm
 app.get("/login.html", (req, res) => res.sendFile(path.join(__dirname + "/View/login.html")));
 app.get("/signup.html", (req, res)=>res.sendFile(path.join(__dirname + "/View/signup.html")));
 app.get("/homepage.html", (req, res) => res.sendFile(path.join(__dirname + "/View/homePage.html")));
+app.post("/homepage.html", (req, res) => res.sendFile(path.join(__dirname + "/View/homePage.html")));
 app.get("/welcome.html", (req, res) => res.sendFile(path.join(__dirname + "/View/welcome.html")));
 
 //person
