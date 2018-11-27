@@ -4,11 +4,10 @@ const port = 4500;
 const app = express();
 const bodyParser = require("body-parser");
 const methodOverride = require("method-override");
-const task = require("./Model/task");
+const utilities = require("./utilities");
 const person = require("./Model/person");
-const project = require("./Model/project");
 const db = require("./Model/dbtest");
-const cors = require('cors');
+const cors = require('cors')
 
 app.use(cors());
 app.use(express.json());
@@ -32,28 +31,20 @@ let conn = mysql.getConnection();
 app.get("/styleSheet.css", (req, res) => res.sendFile(path.join(__dirname + "/View/styleSheet.css")));
 <<<<<<< HEAD
 app.get("/Images/divide.png", (req, res) => res.sendFile(path.join(__dirname + "/View/Images/divide.png")));
-app.get("/Images/avatarImages/:file", (req, res) => res.sendFile(path.join(__dirname + "/View/Images/avatarImages" + req.params.file)));
 app.get('/', (req, res) => res.sendFile(path.join(__dirname + "/View/welcome.html")));
 app.get("/login.html", (req, res) => res.sendFile(path.join(__dirname + "/View/login.html")));
+<<<<<<< HEAD
 app.get("/userProfile.html", (req, res) => res.sendFile(path.join(__dirname + "/View/userProfile.html")));
 =======
 app.get('/', sendLoginPage);
 app.get("/login.html", sendLoginPage);
 >>>>>>> parent of dd10503... Update homepage
+=======
+>>>>>>> parent of e80bf3d... server.js updated
 app.get("/signup.html", (req, res)=>res.sendFile(path.join(__dirname + "/View/signup.html")));
 app.get("/homepage.html", (req, res) => res.sendFile(path.join(__dirname + "/View/homePage.html")));
 app.post("/homepage.html", (req, res) => res.sendFile(path.join(__dirname + "/View/homePage.html")));
 app.get("/welcome.html", (req, res) => res.sendFile(path.join(__dirname + "/View/welcome.html")));
-
-//tasks
-app.get("/api/tasks/:username", (req, res) => {
-    task.getAllTasks(res, conn, req.params.username);
-});
-
-//projects
-app.get("/api/projects/:username", (req, res) => {
-    project.getAllProjects(res, conn, req.params.username);
-});
 
 //person
 app.get("/api/person/users", (req, res) => {person.getAllUsers(req, res, conn);});

@@ -20,11 +20,11 @@
             <a class="navbar-brand" href="#divide">Divide</a>
             <div class="dropdown pull-right">
                 <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" id="userButton">
-                    <i class="fa fa-user-circle"></i> <span id="usernameHTML">User</span>
+                    <i class="fa fa-user-circle"></i> User
                 </button>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="userProfile.html">Profile</a>
-                    <a class="dropdown-item" href="login.html" id="logout">Logout</a>
+                    <a class="dropdown-item" href="login.html">Profile</a>
+                    <a class="dropdown-item" href="login.html">Logout</a>
                 </div>
             </div>
         </nav>
@@ -407,32 +407,9 @@
             </div>
 
             <script>
-                /*$(function() {
+                $(function() {
                     let username = localStorage.getItem("username");
-                    
-                    if(username === "") {
-                        window.location = "/login.html";
-                    }
-                    
-                    let tasks = null;
-                    $.getJSON("http://localhost:4500//api/tasks/" + username, function(data){
-                        tasks = data;
-                        
-                        if(tasks.length === 0) {
-                            
-                        }
-                        else {
-                            
-                        }
-                        
-                    });
-                    
-                    $("#usernameHTML").html(username);
-                    
-                    $("#logout").click(()=>{
-                        localStorage.setItem("username", "");
-                    });
-                });*/
+                });
             </script>
         </div>
     </body>

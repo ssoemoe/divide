@@ -31,30 +31,3 @@ function drop(ev) {
     ev.target.appendChild(document.getElementById(data));
 }
 
-//backend
-/*$(function() {
-    let username = localStorage.getItem("username");
-
-    if(username === "") {
-        window.location = "/login.html";
-    }
-
-    let tasks = null;
-    $.getJSON("http://localhost:4500//api/tasks/" + username, function(data){
-        tasks = data;
-
-        if(tasks.length === 0) {
-
-        }
-        else {
-
-        }
-
-    });
-
-    $("#usernameHTML").html(username);
-
-    $("#logout").click(()=>{
-        localStorage.setItem("username", "");
-    });
-});*/
