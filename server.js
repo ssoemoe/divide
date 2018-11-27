@@ -28,9 +28,10 @@ mysql.startConnection();
 let conn = mysql.getConnection();
 
 //routers
+app.get("/styleSheet.css", (req, res) => res.sendFile(path.join(__dirname + "/View/styleSheet.css")));
 app.get('/', sendLoginPage);
 app.get("/login.html", sendLoginPage);
-app.get("/signup.html", (req, res)=>res.sendFile(path.join(__dirname + "/View/signup.html")))
+app.get("/signup.html", (req, res)=>res.sendFile(path.join(__dirname + "/View/signup.html")));
 app.get("/homepage.html", (req, res) => res.sendFile(path.join(__dirname + "/View/homePage.html")));
 app.get("/welcome.html", (req, res) => res.sendFile(path.join(__dirname + "/View/welcome.html")));
 

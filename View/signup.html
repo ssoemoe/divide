@@ -4,9 +4,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>Divide Application Signup Page</title>
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC" rel="stylesheet">
-        <link rel="stylesheet" href="styleSheet.css">
-
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+        <link href="styleSheet.css" rel="stylesheet">
     </head>
 
     <body>
@@ -20,7 +23,7 @@
             <h3>Sign up for Divide Platform!</h3>
             <div class="col-md-5 mx-auto">                
                 <br />
-                <form action="http://localhost:4500/api/person/add" method="post">
+                <form action="http://localhost:4500/api/person/add" method="post" onsubmit="return validate()">
                     <input type="text" name="firstName" id="firstName" class="form-control" placeholder="First Name" required />
                     <br />
                     <input type="text" name="lastName" id="lastName" class="form-control" placeholder="Last Name" required />
@@ -41,9 +44,31 @@
                     <input type="text" name="team" id="team" class="form-control" placeholder="Team name" required />
                     <br />
                     <input type="submit" name="signup" class="btn btn-outline-primary btn-block" value="Sign Up" />
-
+                    <input type="hidden" name="avatar" value="/View/Images/avatarImages/avatar"/>
                     <p id="message"></p>
                 </form>
+                <script>
+                    let users = null;
+                    $(function() {
+                        $.getJSON("http://localhost:4500/api/person/users", function(data) {
+                            users = data;
+                        });
+                    });
+                    
+                    function validate() {
+                        let email = document.getElementById("emailAdd").value;
+                        let username = document.getElementById("user").value;
+                        let record = users.find(u => (u.email === email && u.username === username));
+                        if(!record) {
+                            document.cookie = `username=${username};path/`;
+                            return true;
+                        }
+                        else {
+                            alert("User already exists.");
+                            return false;
+                        }
+                    }
+                </script>
             </div>
         </div>
     </body>

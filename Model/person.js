@@ -1,3 +1,5 @@
+const tools = require("../utilities");
+
 module.exports = {
     getAllUsers: function(req, res, conn) {
         conn.query("select * from person", (err, result) => {
@@ -13,7 +15,7 @@ module.exports = {
         let record = null;
 
         conn.query(`insert into person(firstName, lastName, username, email, image, password, officePhoneNumber, position, team) ` + 
-        `values("${fname}", "${lname}", "${username}", "${email}", "${image}", "${pwd}", "${phNum}", "${position}", "${team}")`,
+        `values("${fname}", "${lname}", "${username}", "${email}", "${image}` + tools.random(1, 10) +`.png", "${pwd}", "${phNum}", "${position}", "${team}")`,
         (err, result) => {
             if(!err) {
                 return true;
