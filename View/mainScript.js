@@ -2,6 +2,7 @@
 window.onload = main;
 
 function main() {
+  //document.getElementById("storyBoard").classList.add("fade");
   document.getElementById("storyBoardUpdate").onclick = taskUpdate;
   document.getElementById("backlogUpdate").onclick = taskUpdate;
   document.getElementById("projectUpdate").onclick = projectUpdate;
@@ -22,8 +23,27 @@ function createTask() {
 }
 
 function createProject() {
-  window.location.href = "homePage.html";
+  $("#projectModal").modal("hide");
+  /*$("#tabs a").closest("li").find("active").removeClass("active");
+  $("#storyBoard").find("active").removeClass("active");
+  $("#tabs a").closest("li").find("active").addClass("active");
+  $("#project").find("active").addClass("active");*/
 }
+
+/*function switchTabs() {
+  console.log("switch");
+  var homeTab = document.getElementById("homeTab");
+  var storyBoard = document.getElementById("storyBoard");
+  homeTab.classList.remove("active");
+  storyBoard.classList.remove("active");
+
+  var projectTab = document.getElementById("projectTab");
+  var project = document.getElementById("project");
+  projectTab.classList.add("active");
+  projectTab.classList.add("show");
+  project.classList.add("active");
+  project.classList.add("show");
+}*/
 
 // Obtaining JSON data
 /*function getTasks() {
