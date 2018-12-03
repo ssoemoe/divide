@@ -16,33 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `issues`
---
-
-DROP TABLE IF EXISTS `issues`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `issues` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `description` varchar(200) NOT NULL,
-  `status` enum('Complete','Incomplete') NOT NULL,
-  `developerRequesting` varchar(50) NOT NULL,
-  `developerRequested` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `issues`
---
-
-LOCK TABLES `issues` WRITE;
-/*!40000 ALTER TABLE `issues` DISABLE KEYS */;
-INSERT INTO `issues` VALUES (1,'cannot update the dependency','Complete','jmiller','adavis');
-/*!40000 ALTER TABLE `issues` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `person`
 --
 
@@ -50,7 +23,7 @@ DROP TABLE IF EXISTS `person`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `person` (
-  `firstName` varchar(30) NOT NULL,
+  `firstName` varchar(256) NOT NULL,
   `lastName` varchar(30) NOT NULL,
   `username` varchar(30) NOT NULL,
   `email` varchar(50) NOT NULL,
@@ -59,11 +32,7 @@ CREATE TABLE `person` (
   `officePhoneNumber` varchar(15) NOT NULL,
   `position` varchar(30) NOT NULL,
   `team` varchar(30) NOT NULL,
-  `joinedDate` date NOT NULL,
-  `currentTasks` varchar(30) NOT NULL,
-  `currentProjects` varchar(30) NOT NULL,
-  PRIMARY KEY (`username`),
-  UNIQUE KEY `firstName` (`firstName`)
+  PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -73,7 +42,7 @@ CREATE TABLE `person` (
 
 LOCK TABLES `person` WRITE;
 /*!40000 ALTER TABLE `person` DISABLE KEYS */;
-INSERT INTO `person` VALUES ('Ava','Davis','adavis','avadavis@divide.com','./Images/avatarImages/avatar1.PNG','applepie','123-456-0987','Technical Consultant','Software Development','2018-04-23','',''),('Benjamin','Taylor','btaylor','benjamintaylor@divide.com','','applepie','123-456-0192','Systems Analyst','Systems Management','2017-04-24','',''),('Emma','Johnson','ejohnson','emmajohnson@divide.com','','applepie','123-456-8765','Junior Developer','Software Development','2017-10-23','',''),('Isabella','Wilson','iwilson','isabellawilson@divide.com','','applepie','123-456-7654','Network Engineer','Network Management','2018-01-29','',''),('James','Miller','jmiller','jamesmiller@divide.com','','applepie','123-456-9876','Technical Consultant','Software Development','2017-09-25','',''),('John','Wick','jwick','jwick@divide.com','','applepie','345-345-4567','Project Manager','Testing','2018-07-04','',''),('Logan','Moore','lmoore','loganmoore@divide.com','','applepie','123-456-6543','Technical Support','Systems Management','2017-11-27','',''),('Liam','Smith','lsmith','liamsmith@divide.com','','applepie','123-456-4321','Senior Developer','Software Development','2016-08-29','',''),('Noah','Williams','nwilliams','noahwilliams@divide.com','','applepie','123-456-3210','Systems Engineer','Systems Management','2016-10-10','',''),('Olivia','Brown','obrown','oliviabrown@divide.com','','applepie','123-456-1098','Software Tester','Testing','2017-08-14','',''),('William','Jones','wjones','williamjones@divide.com','','applepie','123-456-2109','Project Manager','Software Development','2015-11-16','','');
+INSERT INTO `person` VALUES ('Ada','Davis','adavis','avadavis@divide.com','./Images/avatarImages/avatar1.PNG','applepie','123-456-0987','Technical Consultant','Software Development'),('Benjamin','Taylor','btaylor','benjamintaylor@divide.com','','applepie','123-456-0192','Systems Analyst','Systems Management'),('Emma','Johnson','ejohnson','emmajohnson@divide.com','','applepie','123-456-8765','Junior Developer','Software Development'),('Isabella','Wilson','iwilson','isabellawilson@divide.com','','applepie','123-456-7654','Network Engineer','Network Management'),('james','Miller','jmiller','jamesmiller@divide.com','','applepie','123-456-9876','Technical Consultant','Software Development'),('John','Wick','jwick','jwick@divide.com','','applepie','345-345-4567','Project Manager','Testing'),('Logan','Moore','lmoore','loganmoore@divide.com','','applepie','123-456-6543','Technical Support','Systems Management'),('Liam','Smith','lsmith','liamsmith@divide.com','','applepie','123-456-4321','Senior Developer','Software Development'),('Noah','Williams','nwilliams','noahwilliams@divide.com','','applepie','123-456-3210','Systems Engineer','Systems Management'),('Olivia','Brown','obrown','oliviabrown@divide.com','','applepie','123-456-1098','Software Tester','Testing'),('Sarah','Jones','sjones','sjones@divide.com','/View/Images/avatarImages/avatar2.png','applepie','301-502-2543','Network Engineer','Network Management'),('Tyler','Jones','tjones','tjones@divide.com','/View/Images/avatarImages/avatar5.png','applepie','123-345-6767','Network Engineer','Network Management'),('William','Jones','wjones','williamjones@divide.com','','applepie','123-456-2109','Project Manager','Software Development');
 /*!40000 ALTER TABLE `person` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -89,9 +58,9 @@ CREATE TABLE `project` (
   `description` varchar(256) NOT NULL,
   `manager` varchar(256) NOT NULL,
   `members` varchar(256) NOT NULL,
-  `status` enum('Complete','Incomplete') NOT NULL,
+  `status` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -100,34 +69,8 @@ CREATE TABLE `project` (
 
 LOCK TABLES `project` WRITE;
 /*!40000 ALTER TABLE `project` DISABLE KEYS */;
-INSERT INTO `project` VALUES (1,'Blackbox Web Scraper','wjones','adavis, jmiller','Incomplete');
+INSERT INTO `project` VALUES (1,'Blackbox Web Scraper','wjones','adavis, jmiller',0),(3,'Penetration Testing','jwick','obrown',0);
 /*!40000 ALTER TABLE `project` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `sprint`
---
-
-DROP TABLE IF EXISTS `sprint`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `sprint` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `startDate` date NOT NULL,
-  `endDate` date NOT NULL,
-  `tasks` varchar(200) NOT NULL,
-  `notes` varchar(200) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `sprint`
---
-
-LOCK TABLES `sprint` WRITE;
-/*!40000 ALTER TABLE `sprint` DISABLE KEYS */;
-/*!40000 ALTER TABLE `sprint` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -140,13 +83,12 @@ DROP TABLE IF EXISTS `task`;
 CREATE TABLE `task` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `description` varchar(200) NOT NULL,
-  `status` enum('Complete','Incomplete') NOT NULL,
-  `createdDate` date NOT NULL,
-  `dueDate` date NOT NULL,
+  `status` int(11) NOT NULL,
+  `createdDate` varchar(256) NOT NULL,
+  `dueDate` varchar(256) NOT NULL,
   `assignedMembers` varchar(300) NOT NULL,
   `assigner` varchar(256) NOT NULL,
   `relatedProject` varchar(200) NOT NULL,
-  `issues` varchar(300) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -157,7 +99,7 @@ CREATE TABLE `task` (
 
 LOCK TABLES `task` WRITE;
 /*!40000 ALTER TABLE `task` DISABLE KEYS */;
-INSERT INTO `task` VALUES (1,'Update SHA-256 to SHA-512','Incomplete','2018-11-01','2018-12-08','jmiller','wjones','',''),(2,'Integrated testing for the web scraper','Incomplete','2018-11-25','2018-12-04','obrown','jwick','1',''),(3,'update dependencies on Gradle','Complete','2018-09-01','2018-09-07','jmiller','wjones','1','1');
+INSERT INTO `task` VALUES (1,'Update SHA-256 to SHA-512',0,'11/01/2018','12/08/2018','jmiller','wjones','Blackbox Web Scraper'),(2,'Integrated testing for the web scraper',0,'11/25/2018','12/04/2018','obrown','jwick','Blackbox Web Scraper'),(3,'update dependencies on Gradle',0,'09/01/2018','09/07/2018','jmiller','wjones','Blackbox Web Scraper');
 /*!40000 ALTER TABLE `task` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -197,4 +139,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-25 23:58:54
+-- Dump completed on 2018-12-03 18:32:27

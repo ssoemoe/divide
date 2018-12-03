@@ -9,6 +9,7 @@ const person = require("./Model/person");
 const db = require("./Model/dbtest");
 const cors = require('cors');
 const project = require("./Model/project");
+const task = require("./Model/task");
 
 app.use(cors());
 app.use(express.json());
@@ -40,21 +41,29 @@ app.post("/homepage.html", (req, res) => res.sendFile(path.join(__dirname + "/Vi
 app.get("/welcome.html", (req, res) => res.sendFile(path.join(__dirname + "/View/welcome.html")));
 
 //person
-app.get("/api/person/users", (req, res) => {person.getAllUsers(req, res, conn);});
+app.get("/api/person", (req, res) => {person.getAllUsers(req, res, conn);});
 app.post("/api/person/add", (req, res) => {
     let form = req.body;
     person.addPerson(req, res, conn, form.firstName, form.lastName, form.user, form.emailAdd, form.avatar, form.pwd,
         form.phone, form.pos, form.team);
     res.status(201).sendFile(path.join(__dirname + "/View/homePage.html"));
 });
+/* app.put("/api/person/update", (req, res) => {
+
+}) */
 
 //project
-app.get("/api/project/projects", (req, res) => {project.getAllProjects(req, res, conn)});
+app.get("/api/project", (req, res) => {project.getAllProjects(req, res, conn)});
 app.post("/api/project/add", (req, res) => {
     let form = req.body; ""
     project.addProject(req, res, conn, form.description, form.manager, form.members);
     res.status(201).send("true");
-})
+});
+
+//tasks
+app.get("/api/task", (req, res) => {
+    task.getTasks(req, res, conn);
+});
 
 //testing
 app.get("/dbtest", (req, res) => {db.getPerson(req, res, conn)});
