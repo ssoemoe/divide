@@ -7,7 +7,8 @@ const methodOverride = require("method-override");
 const utilities = require("./utilities");
 const person = require("./Model/person");
 const db = require("./Model/dbtest");
-const cors = require('cors')
+const cors = require('cors');
+const project = require("./Model/project");
 
 app.use(cors());
 app.use(express.json());
@@ -28,9 +29,9 @@ mysql.startConnection();
 let conn = mysql.getConnection();
 
 //routers
+app.get('/', (req, res) => res.sendFile(path.join(__dirname + "/View/welcome.html")));
 app.get("/styleSheet.css", (req, res) => res.sendFile(path.join(__dirname + "/View/styleSheet.css")));
 app.get("/Images/divide.png", (req, res) => res.sendFile(path.join(__dirname + "/View/Images/divide.png")));
-app.get('/', (req, res) => res.sendFile(path.join(__dirname + "/View/welcome.html")));
 app.get("/login.html", (req, res) => res.sendFile(path.join(__dirname + "/View/login.html")));
 app.get("/userProfile.html", (req, res) => res.sendFile(path.join(__dirname + "/View/userProfile.html")));
 app.get("/signup.html", (req, res)=>res.sendFile(path.join(__dirname + "/View/signup.html")));
@@ -46,6 +47,14 @@ app.post("/api/person/add", (req, res) => {
         form.phone, form.pos, form.team);
     res.status(201).sendFile(path.join(__dirname + "/View/homePage.html"));
 });
+
+//project
+app.get("/api/project/projects", (req, res) => {project.getAllProjects(req, res, conn)});
+app.post("/api/project/add", (req, res) => {
+    let form = req.body; ""
+    project.addProject(req, res, conn, form.description, form.manager, form.members);
+    res.status(201).send("true");
+})
 
 //testing
 app.get("/dbtest", (req, res) => {db.getPerson(req, res, conn)});
