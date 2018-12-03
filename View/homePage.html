@@ -19,7 +19,7 @@
             <a class="navbar-brand" href="#divide">Divide</a>
             <div class="dropdown pull-right">
                 <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" id="userButton">
-                    <i class="fa fa-user-circle"></i> User
+                    <i class="fa fa-user-circle"></i><span id="user"></span>
                 </button>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="userProfile.html">Profile</a>
@@ -55,7 +55,7 @@
 					<hr />
 
 					<div class="pull-right">
-						<button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#taskModal">
+						<button type="button" class="btn btn-outline-primary" id="createTask" data-toggle="modal" data-target="#taskModal">
 							<i class="fa fa-plus"></i> Create Task
 						</button>
 						<button type="button" class="btn btn-outline-primary" id="storyBoardUpdate">Update</button>
@@ -71,26 +71,31 @@
 					        <button type="button" class="close" data-dismiss="modal">&times;</button>
 					      </div>
 					      <div class="modal-body">
-									<strong>Description</strong>
-									<textarea rows="3" class="form-control" id="taskDescription"></textarea>
-									<br /><br />
-									<strong>Due Date</strong>
-									<input type="date" name="due-date" class="form-control" id="taskDue" required />
-									<br /><br />
-									<strong>Assigned Member(s)</strong>
-									<!--<input type="text" name="assignees" class="form-control" id="taskMembers" required /><br />-->
-									<select name="members[]" class="form-control" multiple="multiple" id="taskMembers">
-										<option value='a'>Ava</option>
-										<option value='a'>Benjamin</option>
-										<option value='a'>John</option>
-										<option value='a'>William</option>
-									</select>
-									<br /><br />
-									<strong>Related Project</strong>
-									<input type="text" name="related-project" class="form-control" id="taskRelatedProjects" required /><br />
+									<form id="taskForm">
+										<strong>Description</strong>
+										<textarea rows="3" class="form-control" id="taskDescription"></textarea>
+										<br /><br />
+										<strong>Due Date</strong>
+										<input type="date" name="due-date" class="form-control" id="dueDate" required />
+										<br /><br />
+										<strong>Assigned Member(s)</strong>
+										<select name="members[]" class="form-control" multiple="multiple" id="taskMembers">
+											<option value='Ava'>Ava</option>
+											<option value='Benjamin'>Benjamin</option>
+											<option value='John'>John</option>
+											<option value='William'>William</option>
+										</select>
+										<br /><br />
+										<strong>Related Project</strong>
+										<!--<input type="text" name="related-project" class="form-control" id="taskRelatedProjects" required /><br />-->
+										<select name="projects[]" class="form-control" multiple="multiple" id="taskRelatedProjects">
+											<option value='EQT'>EQT</option>
+											<option value='PDA'>PDA</option>
+										</select>
+									</form>
 					      </div>
 					      <div class="modal-footer">
-					      	<button type="button" class="btn btn-outline-primary" id="createTask" />Create</button>
+					      	<button type="button" class="btn btn-outline-primary" id="createT">Create</button>
 					        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					      </div>
 					    </div>
@@ -174,7 +179,7 @@
 					<!--<div class="pull-right">
 						<button type="button" class="btn btn-outline-primary" id="backlogUpdate">Update</button>
 					</div>-->
-					<table class="table table-striped table-bordered table-hover">
+					<table class="table table-striped table-bordered table-hover" id="backlogTable">
 						<thead>
 							<tr align="center">
 								<th>Task Name</th>
@@ -217,14 +222,14 @@
 
 				<div class="tab-pane container fade" id="project">
 					<br />
-					<div class="pull-right">
-						<button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#projectModal">
+					<div class="pull-right" id="projectButton">
+						<button type="button" class="btn btn-outline-primary hide" id="createProject" data-toggle="modal" data-target="#projectModal">
 							<i class="fa fa-plus"></i> Create Project
 						</button>
-						<button type="button" class="btn btn-outline-primary" id="projectUpdate">Update</button>
+						<!--<button type="button" class="btn btn-outline-primary" id="projectUpdate">Update</button>-->
 					</div>
 
-					<div id="projectModal" class="modal fade" role="dialog">
+					<div id="projectModal" class="modal hide fade" role="dialog">
 					  <div class="modal-dialog">
 
 					    <!-- Modal content-->
@@ -234,19 +239,21 @@
 					        <button type="button" class="close" data-dismiss="modal">&times;</button>
 					      </div>
 					      <div class="modal-body">
-									<strong>Description</strong>
-									<textarea rows="3" class="form-control" id="projectDescription"></textarea>
-									<br /><br />
-									<strong>Assigned Member(s)</strong>
-									<select name="members[]" class="form-control" multiple="multiple" id="projectMembers">
-										<option value='a'>Ava</option>
-										<option value='a'>Benjamin</option>
-										<option value='a'>John</option>
-										<option value='a'>William</option>
-									</select>
+									<form id="projectForm">
+										<strong>Description</strong>
+										<textarea rows="3" class="form-control" id="projectDescription"></textarea>
+										<br /><br />
+										<strong>Assigned Member(s)</strong>
+										<select name="members[]" class="form-control" multiple="multiple" id="projectMembers">
+											<option value='Ava'>Ava</option>
+											<option value='Benjamin'>Benjamin</option>
+											<option value='John'>John</option>
+											<option value='William'>William</option>
+										</select>
+									</form>
 					      </div>
 					      <div class="modal-footer">
-					      	<button type="button" class="btn btn-outline-primary" id="createProject">Create</button>
+					      	<button type="button" class="btn btn-outline-primary" id="createP">Create</button>
 					        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					      </div>
 					    </div>
@@ -255,7 +262,7 @@
 					</div>
 					<br /><br />
 
-					<table class="table table-striped table-bordered table-hover">
+					<table class="table table-striped table-bordered table-hover" id="projectTable">
 						<thead>
 							<tr align="center">
 								<th>Description</th>
@@ -269,22 +276,22 @@
 								<td>EQT</td>
 								<td>William</td>
 								<td>Ava, John</td>
-								<td>
-									<select name="status" class="form-control stat" id="status">
+								<td>In Progress
+									<!--<select name="status" class="form-control stat" id="status">
 										<option value="In Progress" selected="selected">In Progress</option>
 										<option value="Complete">Complete</option>
-									</select>
+									</select>-->
 								</td>
 							</tr>
 							<tr align="center">
 								<td>PDA</td>
 								<td>Benjamin</td>
 								<td>Paul</td>
-								<td>
-									<select name="status" class="form-control stat" id="status">
+								<td>In Progress
+									<!--<select name="status" class="form-control stat" id="status">
 										<option value="In Progress" selected="selected">In Progress</option>
 										<option value="Complete">Complete</option>
-									</select>
+									</select>-->
 								</td>
 							</tr>
 						</tbody>

@@ -40,6 +40,10 @@ h5 {
   width: 100px;
 }
 
+.hide {
+  display: none;
+}
+
 body {
     font-family: 'Noto Sans SC', sans-serif;
 }
