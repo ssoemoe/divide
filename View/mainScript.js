@@ -252,6 +252,9 @@ function getTaskMemebers(task) {
     let members = task.members.split(",");
     let result = "";
     for (let i = 0; i < members.length; i++) {
+        if(members[i] === "") {
+            continue;
+        }
         let m = users.find(u => u.username === members[i].trim());
         result += m.firstName +" " + m.lastName;
         if(i !== members.length - 1) {

@@ -342,7 +342,7 @@
                             }
                             $("#tasks").html(getTasksTableContents(tasks, allProjects));
                             let completedTasks = tasks.filter(t => t.status === 1);
-                            let percent = completedTasks.length/tasks.length * 100;
+                            let percent = Math.floor(completedTasks.length/tasks.length * 100);
                             if(isNaN(percent)) {
                                 $('.progress-bar').css('width', '0%').attr('aria-valuenow', 0).html("0%"); 
                             }
