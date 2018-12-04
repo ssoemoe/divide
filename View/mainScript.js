@@ -281,7 +281,13 @@ function fillProjectTable(projects) {
 
 function fillBackLog(tasks) {
     let htmlStr = "";
-    for(let i = 0; i < tasks.length; i++) {
+    tasks = tasks.sort(function(a,b) {
+        let r1 = datediff(parseDate(a.created),parseDate(a.due));
+        let r2 = datediff(parseDate(b.created),parseDate(b.due));
+        return  r1 > r2 ? 1 : (r1 < r2? -1 : 0);
+    });
+
+    for(let i = 0; i < tasks.length; i++) {                 
         htmlStr += `<tr align="center">
 <td>${tasks[i].id}</td>
 <td>${tasks[i].created}</td>
