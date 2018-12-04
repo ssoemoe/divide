@@ -144,6 +144,7 @@ function addTaskRow() {
                                 "<option value='Complete'>Complete</option></select>"
   row.insertCell(3).innerHTML = membersValue;
   row.insertCell(4).innerHTML = projectsValue;
+  row.insertCell(5).innerHTML = "<button type='button' class='btn btn-outline-danger' onclick='deleteRow()'>Close</button>";
 
   var task = {
     "description": description.value,
@@ -186,6 +187,13 @@ function addProjectRow() {
   row.insertCell(2).innerHTML = value;
   // Default value when adding a project would be 'In Progress'
   row.insertCell(3).innerHTML = "In Progress";
+  row.insertCell(4).innerHTML = "<button type='button' class='btn btn-outline-danger' onclick='deleteRow()'>Close</button>";
+}
+
+function deleteRow() {
+  var td = event.target.parentNode;
+  var tr = td.parentNode;
+  tr.parentNode.removeChild(tr);
 }
 
 // Obtaining JSON data

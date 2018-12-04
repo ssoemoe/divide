@@ -113,6 +113,7 @@
 								<th>Status</th>
 								<th>Members</th>
 								<th>Related Projects</th>
+								<th>Close Task</th>
 							</tr>
 						</thead>
 						<tbody id="tasks">
@@ -127,6 +128,7 @@
 								</td>
 								<td>Ava</td>
 								<td>EQT</td>
+								<td><button type="button" class="btn btn-outline-danger" onclick="deleteRow()">Close</button></td>
 							</tr>
 							<tr align="center">
 								<td>Change bar color</td>
@@ -139,6 +141,7 @@
 								</td>
 								<td>John</td>
 								<td>EQT</td>
+								<td><button type="button" class="btn btn-outline-danger" onclick="deleteRow()">Close</button></td>
 							</tr>
 							<tr align="center">
 								<td>Edit help page</td>
@@ -151,6 +154,7 @@
 								</td>
 								<td>Benjamin</td>
 								<td>PDA</td>
+								<td><button type="button" class="btn btn-outline-danger" onclick="deleteRow()">Close</button></td>
 							</tr>
 						</tbody>
 					</table>
@@ -223,13 +227,13 @@
 				<div class="tab-pane container fade" id="project">
 					<br />
 					<div class="pull-right" id="projectButton">
-						<button type="button" class="btn btn-outline-primary" id="createProject" data-toggle="modal" data-target="#projectModal">
+						<button type="button" class="btn btn-outline-primary hide" id="createProject" data-toggle="modal" data-target="#projectModal">
 							<i class="fa fa-plus"></i> Create Project
 						</button>
 						<!--<button type="button" class="btn btn-outline-primary" id="projectUpdate">Update</button>-->
 					</div>
 
-					<div id="projectModal" class="modal fade" role="dialog">
+					<div id="projectModal" class="modal hide fade" role="dialog">
 					  <div class="modal-dialog">
 
 					    <!-- Modal content-->
@@ -269,6 +273,7 @@
 								<th>Manager</th>
 								<th>Members</th>
 								<th>Status</th>
+								<th>Close Project</th>
 							</tr>
 						</thead>
 						<tbody id="projects">
@@ -276,12 +281,8 @@
 								<td>EQT</td>
 								<td>William</td>
 								<td>Ava, John</td>
-								<td>In Progress
-									<!--<select name="status" class="form-control stat" id="status">
-										<option value="In Progress" selected="selected">In Progress</option>
-										<option value="Complete">Complete</option>
-									</select>-->
-								</td>
+								<td>In Progress</td>
+								<td><button type="button" class="btn btn-outline-danger" onclick="deleteRow()">Close</button></td>
 							</tr>
 							<tr align="center">
 								<td>PDA</td>
@@ -293,6 +294,7 @@
 										<option value="Complete">Complete</option>
 									</select>-->
 								</td>
+								<td><button type="button" class="btn btn-outline-danger" onclick="deleteRow()">Close</button></td>
 							</tr>
 						</tbody>
 					</table>
