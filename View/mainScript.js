@@ -204,7 +204,7 @@ function addProjectRow() {
     row.insertCell(2).innerHTML = value;
     // Default value when adding a project would be 'In Progress'
     row.insertCell(3).innerHTML = "In Progress";
-    row.insertCell(4).innerHTML = "<button type='button' class='btn btn-outline-danger' onclick='deleteRow()'>Close</button>";
+    //    row.insertCell(4).innerHTML = "<button type='button' class='btn btn-outline-danger' onclick='deleteRow()'>Close</button>";
 }
 
 function deleteRow() {
@@ -214,9 +214,12 @@ function deleteRow() {
 }
 
 /*Tasks*/
-function getTasksTableContents(tasks) {
+function getTasksTableContents(tasks, projects) {
     let htmlStr = "";
+    tasks = tasks.sort((a,b) => {return a.status > b.status ? 1 : (a.status < b.status ? -1 : 0)});
+    
     for(let i = 0; i < tasks.length; i++) {
+        let project = projects.find(p => p.id === Number(tasks[i].project.trim()));
         htmlStr += `
 <tr align="center">
 <td width="250">${tasks[i].description}</td>
@@ -226,10 +229,10 @@ function getTasksTableContents(tasks) {
 ${getTaskOptions(tasks[i])}
 </select>
 </td><td>${getTaskMemebers(tasks[i])}</td>
-<td>${tasks[i].project}</td> 
-<td><button type="button" class="btn btn-outline-danger" onclick="deleteRow()">Close</button></td>
+<td>${project.description}</td> 
 </tr>
 `;}
+    //    <td><button type="button" class="btn btn-outline-danger" onclick="deleteRow()">Close</button></td>
     return htmlStr;
 }
 
@@ -249,7 +252,21 @@ function getTaskMemebers(task) {
     let members = task.members.split(",");
     let result = "";
     for (let i = 0; i < members.length; i++) {
-        let m = users.find(u => u.username === members[i]);
+        let m = users.find(u => u.username === members[i].trim());
+        result += m.firstName +" " + m.lastName;
+        if(i !== members.length - 1) {
+            result += ",";
+        }
+    }
+    return result;
+}
+
+function getProjectMembers(project) {
+    let users = JSON.parse(localStorage.getItem("users"));
+    let members = project.members.split(",");
+    let result = "";
+    for (let i = 0; i < members.length; i++) {
+        let m = users.find(u => u.username === members[i].trim());
         result += m.firstName +" " + m.lastName;
         if(i !== members.length - 1) {
             result += ",";
@@ -272,18 +289,19 @@ function fillProjectTable(projects) {
 <td>${projects[i].id}</td>
 <td>${projects[i].description}</td>
 <td>${getManager(projects[i].manager)}</td>
-<td>${getTaskMemebers(projects[i])}</td>
-<td><button type="button" class="btn btn-outline-danger" onclick="deleteRow()">Close</button></td>
+<td>${getProjectMembers(projects[i])}</td>
 </tr>
 `;}
+
+    //<td><button type="button" class="btn btn-outline-danger" onclick="deleteRow()">Close</button></td>
     return htmlStr;
 }
 
 function fillBackLog(tasks) {
     let htmlStr = "";
     tasks = tasks.sort(function(a,b) {
-        let r1 = datediff(parseDate(a.created),parseDate(a.due));
-        let r2 = datediff(parseDate(b.created),parseDate(b.due));
+        let r1 = datediff(parseDate(a.due));
+        let r2 = datediff(parseDate(b.due));
         return  r1 > r2 ? 1 : (r1 < r2? -1 : 0);
     });
 
@@ -292,7 +310,7 @@ function fillBackLog(tasks) {
 <td>${tasks[i].id}</td>
 <td>${tasks[i].created}</td>
 <td>${tasks[i].due}</td>
-<td>${datediff(parseDate(tasks[i].created),parseDate(tasks[i].due))}</td></tr>`;
+<td>${datediff(parseDate(tasks[i].due))}</td></tr>`;
     }    
     return htmlStr;
 }
@@ -350,8 +368,14 @@ function parseDate(str) {
     return new Date(mdy[2], mdy[0]-1, mdy[1]);
 }
 
-function datediff(first, second) {
+function datediff(second) {
     // Take the difference between the dates and divide by milliseconds per day.
     // Round to nearest whole number to deal with DST.
-    return Math.round((second-first)/(1000*60*60*24));
+    let result =  Math.round((second-parseDate(getTodayDate()))/(1000*60*60*24));
+    if(result <= 0) {
+        return 0;
+    }
+    else {
+        return result;
+    }
 }

@@ -46,7 +46,7 @@
             });
 
             function validate() {
-                let username = document.getElementById("user").value;
+                let username = (document.getElementById("user").value).trim();
                 let pwd = document.getElementById("pwd").value;
                 let record = users.find(u => (u.username === username && u.password === pwd));
                 if(record) {

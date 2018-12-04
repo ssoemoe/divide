@@ -49,7 +49,8 @@
                     <br />
                     <h6>Progress</h6>
                     <div class="progress">
-                        <div class="progress-bar" style="width: 61.67%;">61.67%</div>
+                        <!--<div class="progress-bar" style="width: 61.67%;">61.67%</div>-->
+                        <div class="progress-bar" style="width: 0%;" aria-valuenow = "0" id="progressBar">0%</div>
                     </div>
                     <hr />
 
@@ -75,7 +76,7 @@
                                         <textarea rows="3" class="form-control" id="taskDescription"></textarea>
                                         <br /><br />
                                         <strong>Due Date</strong>
-                                        <input type="text" name="due-date" class="form-control" placeholder="MM-DD-YYYY" pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}" id="dueDate" required/>
+                                        <input type="text" name="due-date" class="form-control" placeholder="MM-DD-YYYY" pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}" id="dueDate" value="12-31-2018" required/>
                                         <br /><br />
                                         <strong>Assigned Member(s)</strong>
                                         <select name="members[]" class="form-control" multiple="multiple" id="taskMembers">
@@ -111,8 +112,7 @@
                                 <th>ID</th>
                                 <th>Status</th>
                                 <th>Members</th>
-                                <th>Project ID</th>
-                                <th></th>
+                                <th>Project Description</th>
                             </tr>
                         </thead>
                         <tbody id="tasks">
@@ -193,26 +193,26 @@
                         </thead>
                         <tbody id="backlogTBody">
                             <!--<tr align="center">
-                                <td>Update header</td>
-                                <td>6/12/2018</td>
-                                <td>6/19/2018</td>
-                                <td>7
-                                </td>
-                            </tr>
-                            <tr align="center">
-                                <td>Change bar color</td>
-                                <td>6/12/2018</td>
-                                <td>6/19/2018</td>
-                                <td>7
-                                </td>
-                            </tr>
-                            <tr align="center">
-                                <td>Edit help page</td>
-                                <td>6/12/2018</td>
-                                <td>6/19/2018</td>
-                                <td>7
-                                </td>
-                            </tr>-->
+<td>Update header</td>
+<td>6/12/2018</td>
+<td>6/19/2018</td>
+<td>7
+</td>
+</tr>
+<tr align="center">
+<td>Change bar color</td>
+<td>6/12/2018</td>
+<td>6/19/2018</td>
+<td>7
+</td>
+</tr>
+<tr align="center">
+<td>Edit help page</td>
+<td>6/12/2018</td>
+<td>6/19/2018</td>
+<td>7
+</td>
+</tr>-->
                         </tbody>
                     </table>
 
@@ -269,7 +269,6 @@
                                 <th>Description</th>
                                 <th>Manager</th>
                                 <th>Members</th>
-                                <th></th>
                             </tr>
                         </thead>
                         <tbody id="projects">
@@ -307,7 +306,7 @@
                 let usersJSON = JSON.parse(localStorage.getItem("users"));
                 let usersMap = new Map();
                 for (let i = 0; i < usersJSON.length; i++) {
-                    usersMap.set(usersJSON[i].username, usersJSON[i].firstName + " " + usersJSON[i].lastName);
+                    usersMap.set(usersJSON[i].username.trim(), usersJSON[i].firstName + " " + usersJSON[i].lastName);
                 }
                 let taskMap = new Map();
                 let projectMap = new Map();
@@ -320,16 +319,20 @@
                 let tasks = null;
                 let projects = null;
                 let team = null;
+                let allProjects = null;
+                let allTasks = null;
 
                 //tasks
                 $.getJSON("http://localhost:4500/api/task", function(data) {
-                    tasks = data.filter(u => u.manager === user.username || u.members.includes(user.username));
+                    tasks = data.filter(u => u.manager === user.username.trim() || u.members.includes(user.username));
+                    allTasks = data;
                     console.log(tasks);
 
                     $.getJSON("http://localhost:4500/api/project", function(data) {
-                        projects = data.filter(u => u.manager === user.username || u.members.includes(user.username));
+                        projects = data.filter(u => u.manager === user.username.trim() || u.members.includes(user.username));
+                        allProjects = data;
                         console.log(projects);
-                        if(tasks !== null && projects !== null) 
+                        if(tasks && projects) 
                         {
                             for(let i = 0; i < tasks.length; i++) {
                                 taskMap.set(tasks[i].id, tasks[i]);
@@ -337,9 +340,19 @@
                             for(let i = 0; i < projects.length; i++) {
                                 projectMap.set(projects[i].id, projects[i]);
                             }
-                            $("#tasks").html(getTasksTableContents(tasks));
-                            $("#projects").html(fillProjectTable(projects));
+                            $("#tasks").html(getTasksTableContents(tasks, allProjects));
+                            let completedTasks = tasks.filter(t => t.status === 1);
+                            let percent = completedTasks.length/tasks.length * 100;
+                            if(isNaN(percent)) {
+                                $('.progress-bar').css('width', '0%').attr('aria-valuenow', 0).html("0%"); 
+                            }
+                            else {
+                                $('.progress-bar').css('width', percent+'%').attr('aria-valuenow', percent).html(percent + "%");
+                            }
+                             
+                            
                             $("#backlogTBody").html(fillBackLog(tasks));
+                            $("#projects").html(fillProjectTable(projects));
 
                             let relProjStr = "";
 
@@ -353,20 +366,18 @@
 
                 //assigned members
                 $.getJSON("http://localhost:4500/api/team", function(data) {
-                    team = data.find(t => t.manager === user.username || t.members.includes(user.username));
+//                    team = data.find(t => t.manager === user.username || t.members.includes(user.username));
 
                     //prepare for multiple selects
                     let htmlStr = "";
-                    let members = team.members.split(",");
-                    for(let i = 0; i < members.length; i++) {
-                        htmlStr += `<option value="${members[i].trim()}">${usersMap.get(members[i].trim())}</option>`
+                    for(let i = 0; i < usersJSON.length; i++) {
+                        htmlStr += `<option value="${usersJSON[i].username.trim()}">${usersMap.get(usersJSON[i].username.trim())}</option>`
                     }
                     $("#taskMembers").html(htmlStr);
                     $("#projectMembers").html(htmlStr);
                 });
 
                 main();
-
 
                 $("#storyBoardUpdate").click(function() {
                     let keys = [...taskMap.keys()];
@@ -405,7 +416,7 @@
                     $.post('http://localhost:4500/api/project/add',   // url
                            { 
                         description: des,
-                        manager: user.username,
+                        manager: user.username.trim(),
                         members: membersVal.join(",")      
                     }, // data to be submit
                            function(data, status, jqXHR) {// success callback
