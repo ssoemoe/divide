@@ -92,6 +92,7 @@
                             team: team
                         }
                         localStorage.setItem("user", JSON.stringify(user));
+                        users.push(user);
                         localStorage.setItem("users", JSON.stringify(users));
                         return true;
                     }

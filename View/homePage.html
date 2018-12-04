@@ -79,17 +79,17 @@
                                         <br /><br />
                                         <strong>Assigned Member(s)</strong>
                                         <select name="members[]" class="form-control" multiple="multiple" id="taskMembers">
-                                            <option value='Ava'>Ava</option>
-                                            <option value='Benjamin'>Benjamin</option>
-                                            <option value='John'>John</option>
-                                            <option value='William'>William</option>
+                                            <!--<option value='Ava'>Ava</option>
+<option value='Benjamin'>Benjamin</option>
+<option value='John'>John</option>
+<option value='William'>William</option>-->
                                         </select>
                                         <br /><br />
                                         <strong>Related Project</strong>
                                         <!--<input type="text" name="related-project" class="form-control" id="taskRelatedProjects" required /><br />-->
                                         <select name="projects[]" class="form-control" multiple="multiple" id="taskRelatedProjects">
-                                            <option value='EQT'>EQT</option>
-                                            <option value='PDA'>PDA</option>
+                                            <!--<option value='EQT'>EQT</option>
+                                            <option value='PDA'>PDA</option>-->
                                         </select>
                                     </form>
                                 </div>
@@ -248,10 +248,10 @@
                                         <br /><br />
                                         <strong>Assigned Member(s)</strong>
                                         <select name="members[]" class="form-control" multiple="multiple" id="projectMembers">
-                                            <option value='Ava'>Ava</option>
-                                            <option value='Benjamin'>Benjamin</option>
-                                            <option value='John'>John</option>
-                                            <option value='William'>William</option>
+                                            <!--<option value='Ava'>Ava</option>
+<option value='Benjamin'>Benjamin</option>
+<option value='John'>John</option>
+<option value='William'>William</option>-->
                                         </select>
                                     </form>
                                 </div>
@@ -276,25 +276,25 @@
                             </tr>
                         </thead>
                         <tbody id="projects">
-                            <tr align="center">
-                                <td>EQT</td>
-                                <td>William</td>
-                                <td>Ava, John</td>
-                                <td>In Progress</td>
-                                <td><button type="button" class="btn btn-outline-danger" onclick="deleteRow()">Close</button></td>
-                            </tr>
-                            <tr align="center">
-                                <td>PDA</td>
-                                <td>Benjamin</td>
-                                <td>Paul</td>
-                                <td>In Progress
-                                    <!--<select name="status" class="form-control stat" id="status">
+                            <!--<tr align="center">
+<td>EQT</td>
+<td>William</td>
+<td>Ava, John</td>
+<td>In Progress</td>
+<td><button type="button" class="btn btn-outline-danger" onclick="deleteRow()">Close</button></td>
+</tr>
+<tr align="center">
+<td>PDA</td>
+<td>Benjamin</td>
+<td>Paul</td>
+<td>In Progress
+<select name="status" class="form-control stat" id="status">
 <option value="In Progress" selected="selected">In Progress</option>
 <option value="Complete">Complete</option>
-</select>-->
-                                </td>
-                                <td><button type="button" class="btn btn-outline-danger" onclick="deleteRow()">Close</button></td>
-                            </tr>
+</select>
+</td>
+<td><button type="button" class="btn btn-outline-danger" onclick="deleteRow()">Close</button></td>
+</tr>-->
                         </tbody>
                     </table>
 
@@ -307,6 +307,14 @@
         <script>
             $(function() {                
                 let userStr = localStorage.getItem("user");
+                let usersJSON = JSON.parse(localStorage.getItem("users"));
+                let usersMap = new Map();
+                for (let i = 0; i < usersJSON.length; i++) {
+                    usersMap.set(usersJSON[i].username, usersJSON[i].firstName + " " + usersJSON[i].lastName);
+                }
+                let taskMap = new Map();
+                let projectMap = new Map();
+
                 if(userStr == "") {
                     window.location.href = "http://localhost:4500/login.html";
                     return;
@@ -314,18 +322,50 @@
                 let user = JSON.parse(userStr);
                 let tasks = null;
                 let projects = null;
+                let team = null;
+
+                //tasks
                 $.getJSON("http://localhost:4500/api/task", function(data) {
                     tasks = data.filter(u => u.manager === user.username || u.members.includes(user.username));
                     console.log(tasks);
-                    
+
+
+
                     $.getJSON("http://localhost:4500/api/project", function(data) {
                         projects = data.filter(u => u.manager === user.username || u.members.includes(user.username));
                         console.log(projects);
                         if(tasks !== null && projects !== null) 
                         {
+                            for(let i = 0; i < tasks.length; i++) {
+                                taskMap.set(tasks[i].id, tasks[i]);
+                            }
+                            for(let i = 0; i < projects.length; i++) {
+                                projectMap.set(projects[i].id, projects[i]);
+                            }
                             $("#tasks").html(getTasksTableContents(tasks));
+                            
+                            let relProjStr = "";
+                            
+                            for(let i = 0; i < projects.length; i++) {
+                                relProjStr += `<option value='${projects[i].id}'>${projects[i].description}</option>`;
+                            }
+                            $("#taskRelatedProjects").html(relProjStr);
                         }
                     });
+                });
+
+                //assigned members
+                $.getJSON("http://localhost:4500/api/team", function(data) {
+                    team = data.find(t => t.manager === user.username || t.members.includes(user.username));
+
+                    //prepare for multiple selects
+                    let htmlStr = "";
+                    let members = team.members.split(",");
+                    for(let i = 0; i < members.length; i++) {
+                        htmlStr += `<option value="${members[i].trim()}">${usersMap.get(members[i].trim())}</option>`
+                    }
+                    $("#taskMembers").html(htmlStr);
+                    $("#projectMembers").html(htmlStr);
                 });
 
                 main();

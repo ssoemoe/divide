@@ -14,15 +14,15 @@ function main() {
     document.getElementById("storyBoardUpdate").onclick = taskUpdate; 
 
     // Backlog tab
-    document.getElementById("backlogTab").onclick = generateBacklog;
+//    document.getElementById("backlogTab").onclick = generateBacklog;
 
     //document.getElementById("projectUpdate").onclick = projectUpdate;
 }
 
-function getUser() {
+function getUsername() {
     let str = localStorage.getItem("user");
     let u = JSON.parse(str);
-    return u.firstName;
+    return u.username;
 }
 
 function getUserPos() {
@@ -92,7 +92,9 @@ function generateProjectModal() {
 }
 
 function taskUpdate() {
+    
     alert("Tasks have been updated!");
+    location.reload(true);
 }
 
 // Not used
@@ -140,7 +142,20 @@ function addTaskRow() {
     var row = table.insertRow(rowCount);
     row.setAttribute("align", "center");
 
-    row.insertCell(0).innerHTML = description.value;
+    $.post('http://localhost:4500/api/task/add',   // url
+           { 
+        description: description.value,
+        assigner: getUsername(),
+        members: membersValue.join(","),
+        createdDate: getTodayDate(),
+        dueDate: dueDate.value,
+        project: projectsValue.join(",")        
+    }, // data to be submit
+           function(data, status, jqXHR) {// success callback
+        window.location.reload(true);
+    });
+
+    /*row.insertCell(0).innerHTML = description.value;
     row.insertCell(1).innerHTML = count;
     // Default value when adding a task would be 'In Progress'
     row.insertCell(2).innerHTML = "<select name='status' class='form-control stat' id='status'>" +
@@ -150,6 +165,7 @@ function addTaskRow() {
     row.insertCell(4).innerHTML = projectsValue;
     row.insertCell(5).innerHTML = "<button type='button' class='btn btn-outline-danger' onclick='deleteRow()'>Close</button>";
 
+
     var task = {
         "description": description.value,
         "id": 0,
@@ -158,7 +174,7 @@ function addTaskRow() {
         "members": membersValue,
         "relatedProjects": projectsValue
     };
-    localStorage.setItem("task", JSON.stringify(task));
+    localStorage.setItem("task", JSON.stringify(task));*/
 }
 
 function addProjectRow() {
@@ -206,7 +222,7 @@ function getTasksTableContents(tasks) {
     for(let i = 0; i < tasks.length; i++) {
         htmlStr += `
 <tr align="center">
-<td>${tasks[i].description}</td>
+<td width="250">${tasks[i].description}</td>
 <td id="task${tasks[i].id}">${tasks[i].id}</td>
 <td>
 <select name="status" class="form-control stat" id="taskStatus${tasks[i].id}">
@@ -250,16 +266,6 @@ function getProjectName(id, projects) {
     return p.description;
 }
 
-// Obtaining JSON data
-/*function getTasks() {
-    var json = JSON.parse(task);
-    var tasks = json.split(",");
-    for (var i = 0; i < tasks.length; i++) {
-        var tableRow = "<tr><td>" + tasks[i].description + "</td><td></td><td></td><td></td></tr>";
-        $("#tasks").innerHTML = tableRow;
-        //$(tableRow).appendTo("#sprintTable tbody");
-    }
-}*/
 
 function switchTabs() {
     //console.log("switch");
@@ -289,4 +295,22 @@ function drop(ev) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
     ev.target.appendChild(document.getElementById(data));
+}
+
+function getTodayDate() {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+    var yyyy = today.getFullYear();
+
+    if(dd<10) {
+        dd = '0'+dd
+    } 
+
+    if(mm<10) {
+        mm = '0'+mm
+    } 
+
+    today = mm + '-' + dd + '-' + yyyy;
+    return today;
 }

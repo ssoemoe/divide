@@ -10,6 +10,7 @@ const db = require("./Model/dbtest");
 const cors = require('cors');
 const project = require("./Model/project");
 const task = require("./Model/task");
+const team = require("./Model/team");
 
 app.use(cors());
 app.use(express.json());
@@ -47,11 +48,31 @@ app.post("/api/person/add", (req, res) => {
     let form = req.body;
     person.addPerson(req, res, conn, form.firstName, form.lastName, form.user, form.emailAdd, form.avatar, form.pwd,
         form.phone, form.pos, form.team);
-    res.status(201).sendFile(path.join(__dirname + "/View/homePage.html"));
+
+    if(form.pos === "Project Manager") {
+        team.updateManager(req, res, conn, form.team, form.user);
+    }
+    else {
+        team.updateMember(req, res, conn, form.team, form.user);
+    }
+    res.status(201).redirect("http://localhost:4500/homePage.html");
 });
 /* app.put("/api/person/update", (req, res) => {
 
 }) */
+
+//team
+app.get("/api/team", (req,res)=>{team.getTeam(req, res, conn)});
+app.put("/api/team/updateMem", (req, res)=> {
+    let form = req.body; 
+    team.updateMember(req, res, conn, form.teamName, form.members);
+    res.status(201).send("true");
+});
+app.put("/api/team/updateManager", (req, res)=> {
+    let form = req.body; 
+    team.updateManager(req, res, conn, form.teamName, form.manager);
+    res.status(201).send("true");
+});
 
 //project
 app.get("/api/project", (req, res) => {project.getAllProjects(req, res, conn)});
