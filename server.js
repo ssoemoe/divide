@@ -92,7 +92,7 @@ app.post("/api/task/add", (req, res)=> {
         form.assigner, form.project);
     res.status(201).send("created");
 })
-app.put("/api/task/update", (req, res)=> {
+app.post("/api/task/update", (req, res)=> {
     let form = req.body;
     task.updateStatus(req, res, conn, form.id, form.status);
     res.status(200).send("Updated!");

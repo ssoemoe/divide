@@ -11,10 +11,8 @@ function main() {
     // Story Board tab
     document.getElementById("createTask").onclick = generateTaskModal;
     document.getElementById("createT").onclick = createTask;
-    document.getElementById("storyBoardUpdate").onclick = taskUpdate; 
-
     // Backlog tab
-//    document.getElementById("backlogTab").onclick = generateBacklog;
+    //    document.getElementById("backlogTab").onclick = generateBacklog;
 
     //document.getElementById("projectUpdate").onclick = projectUpdate;
 }
@@ -91,11 +89,10 @@ function generateProjectModal() {
     generateMembers("");
 }
 
-function taskUpdate() {
-    
+/*function taskUpdate() {
     alert("Tasks have been updated!");
     location.reload(true);
-}
+}*/
 
 // Not used
 function projectUpdate() {
@@ -261,11 +258,38 @@ function getTaskMemebers(task) {
     return result;
 }
 
-function getProjectName(id, projects) {
-    let p = projects.find(ele => ele.id === id);
-    return p.description;
+function getManager(mgr) {
+    let users = JSON.parse(localStorage.getItem("users"));
+    let manager = (users.find(u => u.username === mgr))
+    return manager.firstName + " " + manager.lastName;
 }
 
+function fillProjectTable(projects) {
+    let htmlStr = "";
+    for(let i = 0; i < projects.length; i++) {
+        htmlStr += `
+<tr align="center">
+<td>${projects[i].id}</td>
+<td>${projects[i].description}</td>
+<td>${getManager(projects[i].manager)}</td>
+<td>${getTaskMemebers(projects[i])}</td>
+<td><button type="button" class="btn btn-outline-danger" onclick="deleteRow()">Close</button></td>
+</tr>
+`;}
+    return htmlStr;
+}
+
+function fillBackLog(tasks) {
+    let htmlStr = "";
+    for(let i = 0; i < tasks.length; i++) {
+        htmlStr += `<tr align="center">
+<td>${tasks[i].id}</td>
+<td>${tasks[i].created}</td>
+<td>${tasks[i].due}</td>
+<td>${datediff(parseDate(tasks[i].created),parseDate(tasks[i].due))}</td></tr>`;
+    }    
+    return htmlStr;
+}
 
 function switchTabs() {
     //console.log("switch");
@@ -313,4 +337,15 @@ function getTodayDate() {
 
     today = mm + '-' + dd + '-' + yyyy;
     return today;
+}
+
+function parseDate(str) {
+    var mdy = str.split('-');
+    return new Date(mdy[2], mdy[0]-1, mdy[1]);
+}
+
+function datediff(first, second) {
+    // Take the difference between the dates and divide by milliseconds per day.
+    // Round to nearest whole number to deal with DST.
+    return Math.round((second-first)/(1000*60*60*24));
 }
