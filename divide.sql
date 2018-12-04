@@ -29,7 +29,7 @@ CREATE TABLE `person` (
   `email` varchar(50) NOT NULL,
   `image` varchar(256) NOT NULL,
   `password` varchar(30) NOT NULL,
-  `officePhoneNumber` varchar(15) NOT NULL,
+  `phone` varchar(15) NOT NULL,
   `position` varchar(30) NOT NULL,
   `team` varchar(30) NOT NULL,
   PRIMARY KEY (`username`)
@@ -42,7 +42,7 @@ CREATE TABLE `person` (
 
 LOCK TABLES `person` WRITE;
 /*!40000 ALTER TABLE `person` DISABLE KEYS */;
-INSERT INTO `person` VALUES ('Ada','Davis','adavis','avadavis@divide.com','./Images/avatarImages/avatar1.PNG','applepie','123-456-0987','Technical Consultant','Software Development'),('Benjamin','Taylor','btaylor','benjamintaylor@divide.com','','applepie','123-456-0192','Systems Analyst','Systems Management'),('Emma','Johnson','ejohnson','emmajohnson@divide.com','','applepie','123-456-8765','Junior Developer','Software Development'),('Isabella','Wilson','iwilson','isabellawilson@divide.com','','applepie','123-456-7654','Network Engineer','Network Management'),('james','Miller','jmiller','jamesmiller@divide.com','','applepie','123-456-9876','Technical Consultant','Software Development'),('John','Wick','jwick','jwick@divide.com','','applepie','345-345-4567','Project Manager','Testing'),('Logan','Moore','lmoore','loganmoore@divide.com','','applepie','123-456-6543','Technical Support','Systems Management'),('Liam','Smith','lsmith','liamsmith@divide.com','','applepie','123-456-4321','Senior Developer','Software Development'),('Noah','Williams','nwilliams','noahwilliams@divide.com','','applepie','123-456-3210','Systems Engineer','Systems Management'),('Olivia','Brown','obrown','oliviabrown@divide.com','','applepie','123-456-1098','Software Tester','Testing'),('Sarah','Jones','sjones','sjones@divide.com','/View/Images/avatarImages/avatar2.png','applepie','301-502-2543','Network Engineer','Network Management'),('Tyler','Jones','tjones','tjones@divide.com','/View/Images/avatarImages/avatar5.png','applepie','123-345-6767','Network Engineer','Network Management'),('William','Jones','wjones','williamjones@divide.com','','applepie','123-456-2109','Project Manager','Software Development');
+INSERT INTO `person` VALUES ('Ada','Davis','adavis','avadavis@divide.com','/View/Images/avatarImages/avatar3.png','applepie','123-456-0987','Technical Consultant','Software Development'),('Another','User','auser','auser@divide.com','/View/Images/avatarImages/avatar3.png','applepie','987-654-3210','Software Developer','Testing'),('Benjamin','Taylor','btaylor','benjamintaylor@divide.com','/View/Images/avatarImages/avatar3.png','applepie','123-456-0192','Systems Analyst','Systems Management'),('Emma','Johnson','ejohnson','emmajohnson@divide.com','/View/Images/avatarImages/avatar3.png','applepie','123-456-8765','Junior Developer','Software Development'),('Isabella','Wilson','iwilson','isabellawilson@divide.com','/View/Images/avatarImages/avatar3.png','applepie','123-456-7654','Network Engineer','Network Management'),('Jerome','Boteng','jboteng','jboteng@divide.com','/View/Images/avatarImages/avatar6.png','applepie','301-502-2543','Architecture Analyst','Systems Management'),('John','Cena','jcena','jcena@divide.com','/View/Images/avatarImages/avatar3.png','applepie','123-345-6767','Network Engineer','Network Management'),('James','Miller','jmiller','jamesmiller@divide.com','/View/Images/avatarImages/avatar3.png','applepie','123-456-9876','Technical Consultant','Software Development'),('Jolly','Molly','jmolly','jmolly@divide.com','/View/Images/avatarImages/avatar2.png','applepie','301-502-2543','Junior Software Developer','Software Development'),('Jaqueline','Perry','jperry','jperry@divide.com','/View/Images/avatarImages/avatar4.png','applepie','123-345-6767','Database Developer','Software Development'),('John','Wick','jwick','jwick@divide.com','/View/Images/avatarImages/avatar4.png','applepie','345-345-4567','Project Manager','Testing'),('Logan','Moore','lmoore','loganmoore@divide.com','/View/Images/avatarImages/avatar4.png','applepie','123-456-6543','Technical Support','Systems Management'),('Liam','Smith','lsmith','liamsmith@divide.com','/View/Images/avatarImages/avatar4.png','applepie','123-456-4321','Senior Developer','Software Development'),('Megan','Kee','mkee','mkee@divide.com','/View/Images/avatarImages/avatar5.png','applepie','301-502-2543','Software Tester','Testing'),('Noah','Williams','nwilliams','noahwilliams@divide.com','/View/Images/avatarImages/avatar4.png','applepie','123-456-3210','Systems Engineer','Systems Management'),('Olivia','Brown','obrown','oliviabrown@divide.com','/View/Images/avatarImages/avatar4.png','applepie','123-456-1098','Software Tester','Testing'),('Richard','Do','rdo','rdo@divide.com','/View/Images/avatarImages/avatar8.png','applepie','301-502-2543','Database Developer','Divide'),('Sarah','Joel','sj','sj@divide.com','/View/Images/avatarImages/avatar9.png','applepie','123-345-6767','Network Administrator','Network Management'),('Sarah','Jones','sjones','sjones@divide.com','/View/Images/avatarImages/avatar2.png','applepie','301-502-2543','Network Engineer','Network Management'),('Susan','Ngo','sngo','sngo@divide.com','/View/Images/avatarImages/avatar6.png','applepie','123-345-6767','Junior Software Developer','Divide'),('Shane','Moe','ssoemoe','ssoemoe@divide.com','/View/Images/avatarImages/avatar6.png','applepie','301-502-2543','Project Manager','Software Development'),('Tyler','Jones','tjones','tjones@divide.com','/View/Images/avatarImages/avatar5.png','applepie','123-345-6767','Network Engineer','Network Management'),('William','James','wjames','wjames@divide.com','/View/Images/avatarImages/avatar3.png','applepie','301-502-2543','Systems Analyst','Systems Management'),('William','Jones','wjones','williamjones@divide.com','/View/Images/avatarImages/avatar4.png','applepie','123-456-2109','Project Manager','Software Development'),('Yared','Tsheaye','yt','yt@divide.com','/View/Images/avatarImages/avatar8.png','applepie','301-502-2543','Software Tester','Testing');
 /*!40000 ALTER TABLE `person` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -60,7 +60,7 @@ CREATE TABLE `project` (
   `members` varchar(256) NOT NULL,
   `status` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -69,7 +69,7 @@ CREATE TABLE `project` (
 
 LOCK TABLES `project` WRITE;
 /*!40000 ALTER TABLE `project` DISABLE KEYS */;
-INSERT INTO `project` VALUES (1,'Blackbox Web Scraper','wjones','adavis, jmiller',0),(3,'Penetration Testing','jwick','obrown',0);
+INSERT INTO `project` VALUES (1,'Blackbox Web Scraper','wjones','adavis, jmiller',0),(3,'Penetration Testing','jwick','obrown',0),(8,'Sonarqube installation and config','jwick','btaylor,mkee',0),(12,'REST api','jwick','obrown,mkee',0),(16,'Divide','ssoemoe','mkee,rdo,sngo',0),(18,'NP','jwick','adavis,auser,btaylor',0);
 /*!40000 ALTER TABLE `project` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -84,13 +84,13 @@ CREATE TABLE `task` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `description` varchar(200) NOT NULL,
   `status` int(11) NOT NULL,
-  `createdDate` varchar(256) NOT NULL,
-  `dueDate` varchar(256) NOT NULL,
-  `assignedMembers` varchar(300) NOT NULL,
-  `assigner` varchar(256) NOT NULL,
-  `relatedProject` varchar(200) NOT NULL,
+  `created` varchar(256) NOT NULL,
+  `due` varchar(256) NOT NULL,
+  `members` varchar(300) NOT NULL,
+  `manager` varchar(256) NOT NULL,
+  `project` varchar(200) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99,7 +99,7 @@ CREATE TABLE `task` (
 
 LOCK TABLES `task` WRITE;
 /*!40000 ALTER TABLE `task` DISABLE KEYS */;
-INSERT INTO `task` VALUES (1,'Update SHA-256 to SHA-512',0,'11/01/2018','12/08/2018','jmiller','wjones','Blackbox Web Scraper'),(2,'Integrated testing for the web scraper',0,'11/25/2018','12/04/2018','obrown','jwick','Blackbox Web Scraper'),(3,'update dependencies on Gradle',0,'09/01/2018','09/07/2018','jmiller','wjones','Blackbox Web Scraper');
+INSERT INTO `task` VALUES (1,'Update SHA-256 to SHA-512',0,'11-01-2018','12-08-2018','jmiller','wjones','1'),(2,'Integrated testing for the web scraper',1,'11-25-2018','12-04-2018','obrown,nwilliams','jwick','3'),(3,'update dependencies on Gradle',1,'09-01-2018','09-07-2018','jmiller','wjones','1'),(4,'Install Kali Linux on VM',1,'12-03-2018','12-10-2018','obrown','jwick','3'),(14,'Design Database',1,'11-04-2018','11-12-2018','rdo','ssoemoe','16'),(15,'Finish presentation',0,'12-04-2018','12-04-2018','mkee,rdo,sngo,ssoemoe','ssoemoe','16'),(17,'Add nav bar',1,'11-04-2018','11-12-2018','mkee,sngo','ssoemoe','16'),(20,'Update the current directory',1,'12-04-2018','12-31-2018','jboteng','jwick','8');
 /*!40000 ALTER TABLE `task` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -126,7 +126,7 @@ CREATE TABLE `team` (
 
 LOCK TABLES `team` WRITE;
 /*!40000 ALTER TABLE `team` DISABLE KEYS */;
-INSERT INTO `team` VALUES (1,'Network Management','This team will be responsible for installing and maintaining the computer networks and train staff to give technical support','',''),(3,'Software Development','This team is responsible for researching, designing, implementing and managing software ','wjones','adavis,jmiller,ejohnson'),(4,'Systems Management','This team is responsible for managing a team of programmers, analysts and support specialists.','0',''),(5,'Testing','This team is responsible for the quality of software development and deployment as well as automated and manual tests.','jwick','obrown');
+INSERT INTO `team` VALUES (1,'Network Management','This team will be responsible for installing and maintaining the computer networks and train staff to give technical support','wjones','jcenar'),(3,'Software Development','This team is responsible for researching, designing, implementing and managing software ','wjones','jmolly,jmiller'),(4,'Systems Management','This team is responsible for managing a team of programmers, analysts and support specialists.','jwick',',wjames,jboteng'),(5,'Testing','This team is responsible for the quality of software development and deployment as well as automated and manual tests.','wjones','obrown,btaylor,mkee,auser,yt'),(6,'Divide','Scrum Management Application','ssoemoe','rdo,sngo,mkee');
 /*!40000 ALTER TABLE `team` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -139,4 +139,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-03 18:32:27
+-- Dump completed on 2018-12-04 14:55:27
