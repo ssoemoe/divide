@@ -30,6 +30,18 @@ const mysql = require("./Model/model");
 mysql.startConnection();
 let conn = mysql.getConnection();
 
+//images
+app.get("/View/Images/avatarImages/avatar1.png", (req, res) => res.sendFile(path.join(__dirname + "/View/Images/avatarImages/avatar1.png")));
+app.get("/View/Images/avatarImages/avatar2.png", (req, res) => res.sendFile(path.join(__dirname + "/View/Images/avatarImages/avatar2.png")));
+app.get("/View/Images/avatarImages/avatar3.png", (req, res) => res.sendFile(path.join(__dirname + "/View/Images/avatarImages/avatar3.png")));
+app.get("/View/Images/avatarImages/avatar4.png", (req, res) => res.sendFile(path.join(__dirname + "/View/Images/avatarImages/avatar4.png")));
+app.get("/View/Images/avatarImages/avatar5.png", (req, res) => res.sendFile(path.join(__dirname + "/View/Images/avatarImages/avatar5.png")));
+app.get("/View/Images/avatarImages/avatar6.png", (req, res) => res.sendFile(path.join(__dirname + "/View/Images/avatarImages/avatar6.png")));
+app.get("/View/Images/avatarImages/avatar7.png", (req, res) => res.sendFile(path.join(__dirname + "/View/Images/avatarImages/avatar7.png")));
+app.get("/View/Images/avatarImages/avatar8.png", (req, res) => res.sendFile(path.join(__dirname + "/View/Images/avatarImages/avatar8.png")));
+app.get("/View/Images/avatarImages/avatar9.png", (req, res) => res.sendFile(path.join(__dirname + "/View/Images/avatarImages/avatar9.png")));
+app.get("/View/Images/avatarImages/avatar10.png", (req, res) => res.sendFile(path.join(__dirname + "/View/Images/avatarImages/avatar10.png")));
+
 //routers
 app.get('/', (req, res) => res.sendFile(path.join(__dirname + "/View/welcome.html")));
 app.get("/styleSheet.css", (req, res) => res.sendFile(path.join(__dirname + "/View/styleSheet.css")));
