@@ -74,10 +74,10 @@
                                     <form id="taskForm">
                                         <strong>Description</strong>
                                         <textarea rows="3" class="form-control" id="taskDescription"></textarea>
-                                        <br /><br />
+                                        <br />
                                         <strong>Due Date</strong>
                                         <input type="text" name="due-date" class="form-control" placeholder="MM-DD-YYYY" pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}" id="dueDate" value="12-31-2018" required/>
-                                        <br /><br />
+                                        <br />
                                         <strong>Assigned Member(s)</strong>
                                         <select name="members[]" class="form-control" multiple="multiple" id="taskMembers">
                                             <!--<option value='Ava'>Ava</option>
@@ -85,7 +85,7 @@
 <option value='John'>John</option>
 <option value='William'>William</option>-->
                                         </select>
-                                        <br /><br />
+                                        <br />
                                         <strong>Related Project</strong>
                                         <!--<input type="text" name="related-project" class="form-control" id="taskRelatedProjects" required /><br />-->
                                         <select name="projects[]" class="form-control" multiple="multiple" id="taskRelatedProjects">
@@ -242,7 +242,7 @@
                                     <form id="projectForm">
                                         <strong>Description</strong>
                                         <textarea rows="3" class="form-control" id="projectDescription"></textarea>
-                                        <br /><br />
+                                        <br />
                                         <strong>Assigned Member(s)</strong>
                                         <select name="members[]" class="form-control" multiple="multiple" id="projectMembers">
                                             <!--<option value='Ava'>Ava</option>
@@ -301,7 +301,7 @@
         </div>
 
         <script>
-            $(function() {                
+            $(function() {
                 let userStr = localStorage.getItem("user");
                 let usersJSON = JSON.parse(localStorage.getItem("users"));
                 let usersMap = new Map();
@@ -332,7 +332,7 @@
                         projects = data.filter(u => u.manager === user.username.trim() || u.members.includes(user.username));
                         allProjects = data;
                         console.log(projects);
-                        if(tasks && projects) 
+                        if(tasks && projects)
                         {
                             for(let i = 0; i < tasks.length; i++) {
                                 taskMap.set(tasks[i].id, tasks[i]);
@@ -344,13 +344,13 @@
                             let completedTasks = tasks.filter(t => t.status === 1);
                             let percent = Math.floor(completedTasks.length/tasks.length * 100);
                             if(isNaN(percent)) {
-                                $('.progress-bar').css('width', '0%').attr('aria-valuenow', 0).html("0%"); 
+                                $('.progress-bar').css('width', '0%').attr('aria-valuenow', 0).html("0%");
                             }
                             else {
                                 $('.progress-bar').css('width', percent+'%').attr('aria-valuenow', percent).html(percent + "%");
                             }
-                             
-                            
+
+
                             $("#backlogTBody").html(fillBackLog(tasks));
                             $("#projects").html(fillProjectTable(projects));
 
@@ -391,9 +391,9 @@
                             curStatus = 0;
                         }
                         $.post('http://localhost:4500/api/task/update',   // url
-                               { 
+                               {
                             id: k,
-                            status: curStatus      
+                            status: curStatus
                         }, // data to be submit
                                function(data, status, jqXHR) {// success callback
 
@@ -402,7 +402,7 @@
                     alert("Tasks have been updated!");
                     location.reload(true);
 
-                }); 
+                });
 
                 $("#createP").click(function() {
                     let des = document.getElementById("projectDescription").value;
@@ -414,10 +414,10 @@
                         }
                     }
                     $.post('http://localhost:4500/api/project/add',   // url
-                           { 
+                           {
                         description: des,
                         manager: user.username.trim(),
-                        members: membersVal.join(",")      
+                        members: membersVal.join(",")
                     }, // data to be submit
                            function(data, status, jqXHR) {// success callback
                         location.reload(true);
