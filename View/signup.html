@@ -49,7 +49,8 @@
                 </div>
                 <input type="submit" name="signup" class="btn btn-outline-primary" value="Sign Up" />
                 <a class="btn btn-outline-primary" href="http://localhost:4500/welcome.html" id="back">Welcome Page</a>
-                <input type="hidden" name="avatar" value="/View/Images/avatarImages/avatar"/>
+                <input type="hidden" name="avatar" id="avatar" value="/View/Images/avatarImages/avatar"/>
+                <br>
                 <p id="message" style="color:red"></p>
             </form>
 
@@ -62,7 +63,7 @@
                 });
 
                 function validate() {
-                    let rand = (Math.floor(Math.random()*10) + 1);
+                    let rand = Math.floor(Math.random()*10) + 1;
                     let fname = document.getElementById("firstName").value;
                     let lname = document.getElementById("lastName").value;
                     let uname = document.getElementById("user").value;
@@ -72,9 +73,13 @@
                     let phone = document.getElementById("phone").value;
                     let pos = document.getElementById("pos").value;
                     let team = document.getElementById("team").value;
-                    
+
                     let record = users.find(u => u.email === email && u.username === uname);
-                    if(!record) {
+                    if(record) {
+                        document.getElementById("message").innerHTML = "User already exists!";
+                        return false;
+                    }
+                    else {
                         let user = {
                             firstName: fname,
                             lastName: lname,
@@ -88,10 +93,6 @@
                         }
                         localStorage.setItem("user", JSON.stringify(user));
                         return true;
-                    }
-                    else {
-                        document.getElementById("message").innerHTML = "User already exists!";
-                        return false;
                     }
                 }
             </script>
