@@ -12,7 +12,7 @@ module.exports = {
     addTask: function(req, res, conn, des, status, createdDate, dueDate, members, assigner, project) {
         let record = null;
 
-        conn.query(`insert into task(id, description, status, created, due, members, assigner, project) ` + 
+        conn.query(`insert into task(id, description, status, created, due, members, manager, project) ` + 
         `values(null, "${des}", ${status}, "${createdDate}", "${dueDate}", "${members}", "${assigner}", "${project}")`,
         (err, result) => {
             if(!err) {

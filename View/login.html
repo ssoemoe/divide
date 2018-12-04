@@ -51,6 +51,7 @@
                 let record = users.find(u => (u.username === username && u.password === pwd));
                 if(record) {
                     localStorage.setItem("user", JSON.stringify(record));
+                    localStorage.setItem("users", JSON.stringify(users));
                     return true;
                 }
                 else {

@@ -32,6 +32,7 @@ let conn = mysql.getConnection();
 //routers
 app.get('/', (req, res) => res.sendFile(path.join(__dirname + "/View/welcome.html")));
 app.get("/styleSheet.css", (req, res) => res.sendFile(path.join(__dirname + "/View/styleSheet.css")));
+app.get("/mainScript.js", (req, res) => res.sendFile(path.join(__dirname + "/View/mainScript.js")));
 app.get("/Images/divide.png", (req, res) => res.sendFile(path.join(__dirname + "/View/Images/divide.png")));
 app.get("/login.html", (req, res) => res.sendFile(path.join(__dirname + "/View/login.html")));
 app.get("/userProfile.html", (req, res) => res.sendFile(path.join(__dirname + "/View/userProfile.html")));
