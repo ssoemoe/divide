@@ -55,7 +55,7 @@ app.post("/api/person/add", (req, res) => {
 //project
 app.get("/api/project", (req, res) => {project.getAllProjects(req, res, conn)});
 app.post("/api/project/add", (req, res) => {
-    let form = req.body; ""
+    let form = req.body; 
     project.addProject(req, res, conn, form.description, form.manager, form.members);
     res.status(201).send("true");
 });
@@ -64,6 +64,17 @@ app.post("/api/project/add", (req, res) => {
 app.get("/api/task", (req, res) => {
     task.getTasks(req, res, conn);
 });
+app.post("/api/task/add", (req, res)=> {
+    let form = req.body;
+    task.addTask(req, res, conn, form.description, 0, form.createdDate, form.dueDate, form.members,
+        form.assigner, form.project);
+    res.status(201).send("created");
+})
+app.put("/api/task/update", (req, res)=> {
+    let form = req.body;
+    task.updateStatus(req, res, conn, form.id, form.status);
+    res.status(200).send("Updated!");
+})
 
 //testing
 app.get("/dbtest", (req, res) => {db.getPerson(req, res, conn)});
