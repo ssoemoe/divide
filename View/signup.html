@@ -24,56 +24,76 @@
             <br />
 
             <form action="http://localhost:4500/api/person/add" method="post" onsubmit="return validate()">
-              <div class="col-md-6 pull-left">
-                <input type="text" name="firstName" id="firstName" class="form-control" placeholder="First Name" required />
-                <br />
-                <input type="email" name="emailAdd" id="emailAdd" class="form-control" placeholder="Email Address" required />
-                <br />
-                <input type="text" name="user" id="user" class="form-control" placeholder="Username" required />
-                <br />
-                <input type="text" name="pos" id="pos" class="form-control" placeholder="Position" required />
-                <br />
-              </div>
-              <div class="col-md-6 pull-right">
-                <input type="text" name="lastName" id="lastName" class="form-control" placeholder="Last Name" required />
-                <br />
-                <input type="tel" id="phone" name="phone"
-                       pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                       class="form-control" placeholder="Phone Number"
-                       required>
-                <br />
-                <input type="password" name="pwd" id="pwd" class="form-control" placeholder="Password" required />
-                <br />
-                <input type="text" name="team" id="team" class="form-control" placeholder="Team name" required />
-                <br />
-              </div>
+                <div class="col-md-6 pull-left">
+                    <input type="text" name="firstName" id="firstName" class="form-control" placeholder="First Name" required />
+                    <br />
+                    <input type="email" name="emailAdd" id="emailAdd" class="form-control" placeholder="Email Address" required />
+                    <br />
+                    <input type="text" name="user" id="user" class="form-control" placeholder="Username" required />
+                    <br />
+                    <input type="text" name="pos" id="pos" class="form-control" placeholder="Position" required />
+                    <br />
+                </div>
+                <div class="col-md-6 pull-right">
+                    <input type="text" name="lastName" id="lastName" class="form-control" placeholder="Last Name" required />
+                    <br />
+                    <input type="tel" id="phone" name="phone"
+                           pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                           class="form-control" placeholder="Phone Number"
+                           required>
+                    <br />
+                    <input type="password" name="pwd" id="pwd" class="form-control" placeholder="Password" required />
+                    <br />
+                    <input type="text" name="team" id="team" class="form-control" placeholder="Team name" required />
+                    <br />
+                </div>
                 <input type="submit" name="signup" class="btn btn-outline-primary" value="Sign Up" />
-                <a class="btn btn-outline-primary" href="welcome.html" id="back">Welcome Page</a>
+                <a class="btn btn-outline-primary" href="http://localhost:4500/welcome.html" id="back">Welcome Page</a>
                 <input type="hidden" name="avatar" value="/View/Images/avatarImages/avatar"/>
-                <p id="message"></p>
+                <p id="message" style="color:red"></p>
             </form>
 
             <script>
-              let users = null;
-              $(function() {
-                $.getJSON("http://localhost:4500/api/person/users", function(data) {
-                    users = data;
+                let users = null;
+                $(function() {
+                    $.getJSON("http://localhost:4500/api/person", function(data) {
+                        users = data;
+                    });
                 });
-              });
 
-              function validate() {
-                let email = document.getElementById("emailAdd").value;
-                let username = document.getElementById("user").value;
-                let record = users.find(u => (u.email === email && u.username === username));
-                if(!record) {
-                  localStorage.setItem("username", username);
-                  return true;
+                function validate() {
+                    let rand = (Math.floor(Math.random()*10) + 1);
+                    let fname = document.getElementById("firstName").value;
+                    let lname = document.getElementById("lastName").value;
+                    let uname = document.getElementById("user").value;
+                    let email = document.getElementById("emailAdd").value;
+                    let avatar = document.getElementById("avatar").value + rand + ".png";
+                    let pwd = document.getElementById("pwd").value;
+                    let phone = document.getElementById("phone").value;
+                    let pos = document.getElementById("pos").value;
+                    let team = document.getElementById("team").value;
+                    
+                    let record = users.find(u => u.email === email && u.username === uname);
+                    if(!record) {
+                        let user = {
+                            firstName: fname,
+                            lastName: lname,
+                            username: uname,
+                            email: email,
+                            image: avatar,
+                            password: pwd,
+                            phone: phone,
+                            position: pos,
+                            team: team
+                        }
+                        localStorage.setItem("user", JSON.stringify(user));
+                        return true;
+                    }
+                    else {
+                        document.getElementById("message").innerHTML = "User already exists!";
+                        return false;
+                    }
                 }
-                else {
-                  alert("User already exists.");
-                  return false;
-                }
-              }
             </script>
         </div>
     </body>
