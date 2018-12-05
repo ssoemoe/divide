@@ -46,15 +46,15 @@ app.get("/welcome.html", (req, res) => res.sendFile(path.join(__dirname + "/View
 app.get("/api/person", (req, res) => {person.getAllUsers(req, res, conn);});
 app.post("/api/person/add", (req, res) => {
     let form = req.body;
-    person.addPerson(req, res, conn, form.firstName, form.lastName, form.user, form.emailAdd, form.avatar, form.pwd,
-        form.phone, form.pos, form.team);
-
     if(form.pos === "Project Manager") {
-        team.updateManager(req, res, conn, form.team, form.user);
+        team.updateManager(req, res, conn, form.teams, form.user);
     }
     else {
-        team.updateMember(req, res, conn, form.team, form.user);
+        team.updateMember(req, res, conn, form.teams, form.user);
     }
+    person.addPerson(req, res, conn, form.firstName, form.lastName, form.user, form.emailAdd, form.avatar, form.pwd,
+        form.phone, form.pos, form.team);
+    
     res.status(201).redirect("http://localhost:4500/homePage.html");
 });
 /* app.put("/api/person/update", (req, res) => {

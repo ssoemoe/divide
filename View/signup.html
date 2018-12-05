@@ -44,10 +44,13 @@
                     <br />
                     <input type="password" name="pwd" id="pwd" class="form-control" placeholder="Password" required />
                     <br />
-                    <input type="text" name="team" id="team" class="form-control" placeholder="Team name" required />
+                    <select name="teams" data-toggle = "dropdown" class="form-control dropdown" id="teams" size="1"
+                            style="overflow: auto;">
+                    </select>
+                    <br /><br />
                     <br />
                 </div>
-                <input type="submit" name="signup" class="btn btn-outline-primary" value="Sign Up" />
+                <input type="submit" name="signup"  class="btn btn-outline-primary" value="Sign Up" />
                 <a class="btn btn-outline-primary" href="http://localhost:4500/welcome.html" id="back">Welcome Page</a>
                 <input type="hidden" name="avatar" id="avatar" value="/View/Images/avatarImages/avatar"/>
                 <br>
@@ -62,6 +65,16 @@
                     });
                 });
 
+                //teams
+                $.getJSON("http://localhost:4500/api/team", function(data) {
+                    //prepare for multiple selects
+                    let htmlStr = "";
+                    for(let i = 0; i < data.length; i++) {
+                        htmlStr += `<option value="${data[i].teamName}">${data[i].teamName}</option>`
+                    }
+                    $("#teams").html(htmlStr);
+                });
+
                 function validate() {
                     let rand = Math.floor(Math.random()*10) + 1;
                     let fname = document.getElementById("firstName").value;
@@ -72,10 +85,12 @@
                     let pwd = document.getElementById("pwd").value;
                     let phone = document.getElementById("phone").value;
                     let pos = document.getElementById("pos").value;
-                    let team = document.getElementById("team").value;
+                    let teamDropdown = document.getElementById("teams");
+                    let team = teamDropdown[teamDropdown.selectedIndex].text;
 
                     let record = users.find(u => u.email === email && u.username === uname);
                     if(record) {
+                        localStorage.setItem("user", "");
                         document.getElementById("message").innerHTML = "User already exists!";
                         return false;
                     }

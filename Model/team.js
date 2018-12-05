@@ -10,7 +10,7 @@ module.exports = {
         })
     },
     updateMember: function(req, res, conn, teamName, members) {
-        conn.query(`update team set members=CONCAT_WS( ",", IFNULL(members," ") ,"${members}") where teamName="${teamName}"`,
+        conn.query(`update team set members=CONCAT( members,",${members}") where teamName="${teamName}"`,
         (err, result) => {
             if(!err) {
                 return true;
