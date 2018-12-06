@@ -217,7 +217,7 @@ function deleteRow() {
 function getTasksTableContents(tasks, projects) {
     let htmlStr = "";
     tasks = tasks.sort((a,b) => {return a.status > b.status ? 1 : (a.status < b.status ? -1 : 0)});
-    
+
     for(let i = 0; i < tasks.length; i++) {
         let project = projects.find(p => p.id === Number(tasks[i].project.trim()));
         htmlStr += `
@@ -302,6 +302,8 @@ function fillProjectTable(projects) {
 
 function fillBackLog(tasks) {
     let htmlStr = "";
+    completedTasks = tasks.filter(t => datediff(parseDate(t.due)) < 0);
+    tasks = tasks.filter(t => datediff(parseDate(t.due)) >= 0);
     tasks = tasks.sort(function(a,b) {
         let r1 = datediff(parseDate(a.due));
         let r2 = datediff(parseDate(b.due));
@@ -310,12 +312,28 @@ function fillBackLog(tasks) {
 
     for(let i = 0; i < tasks.length; i++) {                 
         htmlStr += `<tr align="center">
+<td>${tasks[i].description}</td>
 <td>${tasks[i].id}</td>
 <td>${tasks[i].created}</td>
 <td>${tasks[i].due}</td>
 <td>${datediff(parseDate(tasks[i].due))}</td></tr>`;
     }    
+
+    for(let i = 0; i < completedTasks.length; i++) {                 
+        htmlStr += `<tr align="center">
+<td>${completedTasks[i].description}</td>
+<td>${completedTasks[i].id}</td>
+<td>${completedTasks[i].created}</td>
+<td>${completedTasks[i].due}</td>
+<td>${getDateCompDes(completedTasks[i].status)}</td></tr>`;
+    }  
+
     return htmlStr;
+}
+
+function getDateCompDes(status) {
+    if(status == 0) return "Overdue"
+    else return "Complete";
 }
 
 function switchTabs() {
@@ -375,10 +393,5 @@ function datediff(second) {
     // Take the difference between the dates and divide by milliseconds per day.
     // Round to nearest whole number to deal with DST.
     let result =  Math.round((second-parseDate(getTodayDate()))/(1000*60*60*24));
-    if(result <= 0) {
-        return 0;
-    }
-    else {
-        return result;
-    }
+    return result;
 }
