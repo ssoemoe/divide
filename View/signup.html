@@ -50,9 +50,11 @@
                     <br /><br />
                     <br />
                 </div>
+                
                 <input type="submit" name="signup"  class="btn btn-outline-primary" value="Sign Up" />
                 <a class="btn btn-outline-primary" href="http://localhost:4500/welcome.html" id="back">Welcome Page</a>
                 <input type="hidden" name="avatar" id="avatar" value="/View/Images/avatarImages/avatar"/>
+
                 <br>
                 <p id="message" style="color:red"></p>
             </form>
@@ -88,7 +90,7 @@
                     let teamDropdown = document.getElementById("teams");
                     let team = teamDropdown[teamDropdown.selectedIndex].text;
 
-                    let record = users.find(u => u.email === email && u.username === uname);
+                    let record = users.find(u => u.email === email || u.username === uname);
                     if(record) {
                         localStorage.setItem("user", "");
                         document.getElementById("message").innerHTML = "User already exists!";
