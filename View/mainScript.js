@@ -302,8 +302,8 @@ function fillProjectTable(projects) {
 
 function fillBackLog(tasks) {
     let htmlStr = "";
-    completedTasks = tasks.filter(t => datediff(parseDate(t.due)) < 0);
-    tasks = tasks.filter(t => datediff(parseDate(t.due)) >= 0);
+    completedTasks = tasks.filter(t => datediff(parseDate(t.due)) < 0 || t.status == 1);
+    tasks = tasks.filter(t => datediff(parseDate(t.due)) >= 0 && t.status === 0);
     tasks = tasks.sort(function(a,b) {
         let r1 = datediff(parseDate(a.due));
         let r2 = datediff(parseDate(b.due));
