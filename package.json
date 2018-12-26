@@ -1,0 +1,20 @@
+{
+  "name": "divide",
+  "version": "1.0.0",
+  "description": "## Description A scrum management web application. The word \"Divide\" refers to the \"Divide and Conquer\" method in programming.",
+  "main": "router.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ssoemoe/divide.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ssoemoe/divide/issues"
+  },
+  "homepage": "https://github.com/ssoemoe/divide#readme"
+}
